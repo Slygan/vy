@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Log.d(LOG_TAG,"START");
-        Log.d(LOG_TAG,"START");
+
 
         context = this;
 
