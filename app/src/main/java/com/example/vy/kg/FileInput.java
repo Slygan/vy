@@ -33,7 +33,7 @@ public class FileInput {
                     Integer lineB = Integer.valueOf(tempStr[2].split("/")[0])-1;
                     Integer lineC = Integer.valueOf(tempStr[3].split("/")[0])-1;
 
-                    Log.d(LOG_TAG,"Треугольник " + lineA + "\t" + lineB + "\t" + lineC);
+                    //Log.d(LOG_TAG,"Треугольник " + lineA + "\t" + lineB + "\t" + lineC);
 
                     int xA = (int)((Double.valueOf(list.get(lineA).split(" ")[1])+1.)*width/2);
                     int yA = (int)((Double.valueOf(list.get(lineA).split(" ")[2])*-1+1.)*height/2);
@@ -71,7 +71,7 @@ public class FileInput {
                 BufferedReader reader = new BufferedReader(isr);
                 String line;
                 StringBuilder builder = new StringBuilder();
-//terracotta army
+
             try {
                 while ((line = reader.readLine()) != null) {
                     list.add(line);

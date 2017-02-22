@@ -30,7 +30,7 @@ public class FigureLine extends Figure {
 
         double x = x1, y = y1;
 
-        pixels.add(new MyPixelRect(size,(int)x*size,(int)y*size));
+        pixels.add(new MyPixelRect(size,(int)x,(int)y));
 
         int dx = x2-x1;
         int dy = y2-y1;
@@ -40,7 +40,11 @@ public class FigureLine extends Figure {
         while(x < x2){
             x+= t*dx;
             y+= t*dy;
-            pixels.add(new MyPixelRect(size,(int)x*size,(int)y*size));
+
+            //x+=size;
+            //y+=size;
+
+            pixels.add(new MyPixelRect(size,(int)x,(int)y));
         }
 
     }
@@ -93,7 +97,7 @@ public class FigureLine extends Figure {
         x = x1;
         y = y1;
         err = el/2;
-        pixels.add(new MyPixelRect(size,x*size,y*size));//ставим первую точку
+        pixels.add(new MyPixelRect(size,x,y));//ставим первую точку
 
         for (int t = 0; t < el; t++){
             err -= es;
@@ -106,7 +110,7 @@ public class FigureLine extends Figure {
                 y += pdy;//цикл идёт по иксу; сдвинуть вверх или вниз, если по y
             }
 
-            pixels.add(new MyPixelRect(size,x*size,y*size));
+            pixels.add(new MyPixelRect(size,x,y));
 
         }
     }

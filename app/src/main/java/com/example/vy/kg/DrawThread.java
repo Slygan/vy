@@ -27,6 +27,7 @@ class DrawThread extends Thread{
 
     static CopyOnWriteArrayList<MyPixelRect> pixels = new CopyOnWriteArrayList<>();
     static CopyOnWriteArrayList<Figure> figures = new CopyOnWriteArrayList<>();
+    static CopyOnWriteArrayList<Figure> motion = new CopyOnWriteArrayList<>();
 
     public DrawThread(SurfaceHolder surfaceHolder, Resources resources){
         this.surfaceHolder = surfaceHolder;
@@ -53,6 +54,12 @@ class DrawThread extends Thread{
 
                     for (MyPixelRect pixel : pixels) {
                         canvas.drawPoints(pixel.getPixel(), paint);
+                    }
+
+                    for (Figure figure : motion) {
+                        for (MyPixelRect pixel : figure.getFigure()) {
+                            canvas.drawPoints(pixel.getPixel(), paint);
+                        }
                     }
 
                     for (Figure figure : figures) {

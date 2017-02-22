@@ -53,45 +53,54 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
-    private int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    private int x1 = -1, y1 = 0, x2 = 0, y2 = 0;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         if(IS_LINE){
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
-                if(x1 == 0){
-                    x1 = (int)event.getX();
-                    y1 = (int)event.getY();
-                }else{
-                    x2 = (int)event.getX();
-                    y2 = (int)event.getY();
+            if(x1 == -1){
+                x1 = (int)event.getX();
+                y1 = (int)event.getY();
+            }else{
+                x2 = (int)event.getX();
+                y2 = (int)event.getY();
 
-                    FigureLine tempLine = new FigureLine(x1,y1,x2,y2);
-                    tempLine.buildParamLine(1);
+                FigureLine tempLine = new FigureLine(x1,y1,x2,y2);
+                tempLine.buildParamLine(1);
+
+                DrawThread.motion.clear();
+                if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(tempLine);
-
-                    x1 = 0;
+                    x1 = -1;
+                }else{
+                    DrawThread.motion.add(tempLine);
                 }
             }
+
         }
 
         if(IS_ROUND){
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
-            }
-            if(event.getAction() == MotionEvent.ACTION_UP){
+            }else{
                 x2 = (int)event.getX();
                 y2 = (int)event.getY();
                 int R = (int)Math.sqrt(Math.abs((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)));
 
                 FigureRound round = new FigureRound(x1,y1,R);
                 round.BrazAlgCircle(DrawThread.pixelSize);
-                DrawThread.figures.add(round);
 
-                x1 = 0; y1 = 0; x2 = 0; y2 =0;
+                DrawThread.motion.clear();
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    DrawThread.figures.add(round);
+                    x1 = -1;
+                }else{
+                    DrawThread.motion.add(round);
+                }
             }
+
         }
 
         if(IS_PEN){
