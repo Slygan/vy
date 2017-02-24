@@ -1,5 +1,5 @@
-rect 300 700 300 700
-line 250 300 600 600
-line 0 0 600 600
-rect 150 200 150 200
-round 400 400 100
+rect 300 700 300 700 blue red
+line 250 300 600 600 red blue
+line 0 0 600 600 red blue red
+rect 150 200 150 200 black black
+round 400 400 100 black red

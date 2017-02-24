@@ -1,5 +1,7 @@
 package com.example.vy.kg.figures;
 
+import android.graphics.Color;
+
 import com.example.vy.kg.pixels.MyPixelRect;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -9,6 +11,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public abstract class Figure {
+
+    protected Color colorFill = null;
+    protected Color colorBorder = null;
 
     protected CopyOnWriteArrayList<MyPixelRect> pixels;
 
@@ -20,4 +25,19 @@ public abstract class Figure {
         return pixels;
     }
 
+    public Color getColorFill() {
+        return colorFill;
+    }
+
+    public void setColorFill(Color colorFill) {
+        this.colorFill = colorFill;
+    }
+
+    public Color getColorBorder() {
+        return colorBorder;
+    }
+
+    public void setColorBorder(Color colorBorder) {
+        this.colorBorder = colorBorder;
+    }
 }
