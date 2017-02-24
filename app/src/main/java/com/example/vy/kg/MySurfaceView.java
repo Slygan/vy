@@ -115,6 +115,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 FigureRect rect = new FigureRect(x1,x2,y1,y2);
                 rect.buildRect();
 
+                FigureRect rect2 = new FigureRect(100,200,100,200);
+                rect2.buildRect();
+                DrawThread.figures.add(rect2);
+
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(rect);
