@@ -2,6 +2,8 @@ package com.example.vy.kg.figures;
 
 import com.example.vy.kg.pixels.MyPixelRect;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * Created by vy on 2/13/17.
  */
@@ -24,7 +26,7 @@ public class FigureLine extends Figure {
         }
     }
 
-    public void buildParamLine(int size){
+    public CopyOnWriteArrayList<MyPixelRect> buildParamLine(int size){
 
         pixels.clear();
 
@@ -47,12 +49,13 @@ public class FigureLine extends Figure {
             pixels.add(new MyPixelRect(size,(int)x,(int)y));
         }
 
+        return pixels;
     }
 
     private int sign (int x) {
         return (x > 0) ? 1 : (x < 0) ? -1 : 0;
     }
-    public void buildBresenLine (int size){
+    public CopyOnWriteArrayList<MyPixelRect> buildBresenLine (int size){
 
         pixels.clear();
 
@@ -113,6 +116,7 @@ public class FigureLine extends Figure {
             pixels.add(new MyPixelRect(size,x,y));
 
         }
+        return pixels;
     }
 
 

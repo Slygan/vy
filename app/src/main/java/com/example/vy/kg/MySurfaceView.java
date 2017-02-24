@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.example.vy.kg.figures.FigureLine;
+import com.example.vy.kg.figures.FigureRect;
 import com.example.vy.kg.figures.FigureRound;
 import com.example.vy.kg.pixels.MyPixelRect;
 
@@ -17,6 +18,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public static boolean IS_PEN = false;
     public static boolean IS_LINE = false;
     public static boolean IS_ROUND = false;
+    public static boolean IS_RECT = false;
 
     private DrawThread drawThread;
 
@@ -67,7 +69,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
 
                 FigureLine tempLine = new FigureLine(x1,y1,x2,y2);
-                tempLine.buildParamLine(1);
+                tempLine.buildBresenLine(1);
 
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
@@ -100,7 +102,28 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                     DrawThread.motion.add(round);
                 }
             }
+        }
 
+        if(IS_RECT){
+            if(x1 == -1){
+                x1 = (int)event.getX();
+                y1 = (int)event.getY();
+            }else{
+                x2 = (int)event.getX();
+                y2 = (int)event.getY();
+
+                FigureRect rect = new FigureRect(x1,x2,y1,y2);
+                rect.buildRect();
+
+                DrawThread.motion.clear();
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    DrawThread.figures.add(rect);
+                    x1 = -1;
+                }else{
+                    DrawThread.motion.add(rect);
+                }
+
+            }
         }
 
         if(IS_PEN){

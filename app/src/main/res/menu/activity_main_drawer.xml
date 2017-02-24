@@ -9,12 +9,16 @@
             android:title="CLear"/>
         <item
             android:id="@+id/nav_pen"
-            android:icon="@mipmap/ic_create_black_24dp"
+            android:icon="@mipmap/ic_gesture_black_24dp"
             android:title="Pen" />
         <item
             android:id="@+id/nav_line"
-            android:icon="@mipmap/ic_gesture_black_24dp"
+            android:icon="@mipmap/ic_create_black_24dp"
             android:title="Line" />
+        <item
+            android:id="@+id/nav_rect"
+            android:icon="@mipmap/ic_create_black_24dp"
+            android:title="Rectangle" />
         <item
             android:id="@+id/nav_round"
             android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
@@ -23,6 +27,11 @@
             android:id="@+id/nav_model"
             android:icon="@mipmap/ic_face_black_24dp"
             android:title="Person" />
+        <item
+            android:id="@+id/nav_file"
+            android:icon="@mipmap/ic_face_black_24dp"
+            android:title="File"/>
+
     </group>
 
     <!--<item android:title="Communicate">
