@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import com.example.vy.kg.figures.Figure;
 import com.example.vy.kg.pixels.MyPixelRect;
@@ -21,6 +22,8 @@ class DrawThread extends Thread{
     private Paint paint;
 
     public static int pixelSize = 1;
+    public static int width = 0;
+    public static int height = 0;
 
 
     final String LOG_TAG = "VY_LOGS";
@@ -37,6 +40,15 @@ class DrawThread extends Thread{
         paint.setTextSize(15);
 
     }
+    public DrawThread(SurfaceHolder surfaceHolder, Resources resources, int color){
+        this.surfaceHolder = surfaceHolder;
+
+        paint = new Paint();
+        paint.setColor(color);
+        paint.setTextSize(15);
+
+    }
+
 
     public void setRunning(boolean run) {
         runFlag = run;
@@ -49,6 +61,8 @@ class DrawThread extends Thread{
         while (runFlag) {
             try {
                 canvas = surfaceHolder.lockCanvas(null);
+                width = canvas.getWidth();
+                height = canvas.getHeight();
                 synchronized (surfaceHolder) {
                     canvas.drawColor(Color.WHITE);
 
@@ -83,5 +97,4 @@ class DrawThread extends Thread{
 
 
     }
-
 }

@@ -7,7 +7,7 @@ package com.example.vy.kg.pixels;
 abstract class MyPixel {
     protected int size;
     protected int x, y;
-
+    protected int color = 0xFF000000;
     protected float [] points;
 
     public MyPixel(int size,int x, int y){
@@ -26,6 +26,13 @@ abstract class MyPixel {
     }
     public int getSize(){
         return size;
+    }
+
+    public int getColor() {
+        return color;
+    }
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public  float[] getPixel(){
