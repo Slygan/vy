@@ -1,8 +1,6 @@
-package com.example.vy.kg.figures;
+package com.example.vy.kg.graphics.figures;
 
-import android.util.Log;
-
-import com.example.vy.kg.pixels.MyPixelRect;
+import com.example.vy.kg.graphics.pixels.MyPixelRect;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**

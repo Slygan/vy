@@ -1,6 +1,6 @@
-package com.example.vy.kg.figures;
+package com.example.vy.kg.graphics.figures;
 
-import com.example.vy.kg.pixels.MyPixelRect;
+import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 /**
  * Created by vy on 2/17/17.

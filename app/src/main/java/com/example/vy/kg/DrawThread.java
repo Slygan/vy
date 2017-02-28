@@ -4,10 +4,9 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.SurfaceHolder;
-import com.example.vy.kg.figures.Figure;
-import com.example.vy.kg.pixels.MyPixelRect;
+import com.example.vy.kg.graphics.figures.Figure;
+import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

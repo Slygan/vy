@@ -2,10 +2,10 @@ package com.example.vy.kg.file.parser;
 
 import android.util.Log;
 
-import com.example.vy.kg.figures.Figure;
-import com.example.vy.kg.figures.FigureLine;
-import com.example.vy.kg.figures.FigureRect;
-import com.example.vy.kg.figures.FigureRound;
+import com.example.vy.kg.graphics.figures.Figure;
+import com.example.vy.kg.graphics.figures.FigureLine;
+import com.example.vy.kg.graphics.figures.FigureRect;
+import com.example.vy.kg.graphics.figures.FigureRound;
 
 import java.util.ArrayList;
 

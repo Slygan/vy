@@ -3,7 +3,7 @@ package com.example.vy.kg;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-import com.example.vy.kg.figures.FigureLine;
+import com.example.vy.kg.graphics.figures.FigureLine;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

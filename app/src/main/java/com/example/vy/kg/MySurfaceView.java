@@ -1,15 +1,13 @@
 package com.example.vy.kg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import com.example.vy.kg.figures.FigureLine;
-import com.example.vy.kg.figures.FigureRect;
-import com.example.vy.kg.figures.FigureRound;
-import com.example.vy.kg.pixels.MyPixelRect;
+import com.example.vy.kg.graphics.figures.FigureLine;
+import com.example.vy.kg.graphics.figures.FigureRect;
+import com.example.vy.kg.graphics.figures.FigureRound;
+import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 /**
  * Created by vy on 2/10/17.

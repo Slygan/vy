@@ -1,4 +1,4 @@
-package com.example.vy.kg.pixels;
+package com.example.vy.kg.graphics.pixels;
 
 /**
  * Created by vy on 2/12/17.

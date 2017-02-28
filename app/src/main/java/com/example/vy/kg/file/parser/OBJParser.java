@@ -1,7 +1,7 @@
 package com.example.vy.kg.file.parser;
 
-import com.example.vy.kg.figures.Figure;
-import com.example.vy.kg.figures.FigureLine;
+import com.example.vy.kg.graphics.figures.Figure;
+import com.example.vy.kg.graphics.figures.FigureLine;
 
 import java.util.ArrayList;
 
