@@ -50,6 +50,7 @@ class DrawThread extends Thread{
     }
 
 
+
     public void setRunning(boolean run) {
         runFlag = run;
     }
