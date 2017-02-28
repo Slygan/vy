@@ -1,6 +1,8 @@
 package com.example.vy.kg;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,6 +21,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public static boolean IS_LINE = false;
     public static boolean IS_ROUND = false;
     public static boolean IS_RECT = false;
+    public static boolean IS_MOSAIC = false;
 
     private DrawThread drawThread;
 
@@ -37,7 +40,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder(), getResources());
+        drawThread = new DrawThread(getHolder(), getResources(),0xff00ff00);
         drawThread.setRunning(true);
         drawThread.start();
     }
@@ -134,7 +137,16 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             DrawThread.pixels.add(new MyPixelRect(DrawThread.pixelSize,(int)event.getX(),(int)event.getY()));
         }
 
-
+        if(IS_MOSAIC) {
+            int w = DrawThread.width;
+            int h = DrawThread.height;
+            int size = 3;
+            for (int i = 0; i < h; i += size) {
+                for (int j = 0; j < w; j += size) {
+                    DrawThread.pixels.add(new MyPixelRect(size*size, j, i));
+                }
+            }
+        }
         return true;
     }
 }

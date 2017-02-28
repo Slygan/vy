@@ -114,7 +114,6 @@ public class FigureLine extends Figure {
             }
 
             pixels.add(new MyPixelRect(size,x,y));
-
         }
         return pixels;
     }

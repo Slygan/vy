@@ -5,17 +5,17 @@ import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
@@ -151,28 +151,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_line) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = true;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_round) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = true;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_rect) {
             MySurfaceView.IS_RECT = true;
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
+            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_model) {
             new FileInput(this);
         } else if (id == R.id.nav_file){
             DrawThread.figures.addAll(new XMLParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.figures))));
+        } else if (id == R.id.nav_mosaic){
+            MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_PEN = false;
+            MySurfaceView.IS_LINE = false;
+            MySurfaceView.IS_ROUND = false;
+            MySurfaceView.IS_MOSAIC = true;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
