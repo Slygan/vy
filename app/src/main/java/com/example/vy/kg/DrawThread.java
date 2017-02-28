@@ -40,14 +40,6 @@ class DrawThread extends Thread{
         paint.setTextSize(15);
 
     }
-    public DrawThread(SurfaceHolder surfaceHolder, Resources resources, int color){
-        this.surfaceHolder = surfaceHolder;
-
-        paint = new Paint();
-        paint.setColor(color);
-        paint.setTextSize(15);
-
-    }
 
 
     public void setRunning(boolean run) {
