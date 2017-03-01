@@ -12,8 +12,4 @@ public class MyPixelRound extends MyPixel{
 
     }
 
-    @Override
-    public void refactor() {
-
-    }
 }

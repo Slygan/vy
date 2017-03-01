@@ -16,18 +16,6 @@ abstract class MyPixel {
         this.y = y;
     }
 
-    public void setCoordinatCenter(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setSize(int size){
-        this.size = size;
-    }
-    public int getSize(){
-        return size;
-    }
-
     public int getColor() {
         return color;
     }
@@ -38,6 +26,4 @@ abstract class MyPixel {
     public  float[] getPixel(){
         return points;
     }
-
-    public abstract void refactor();
 }

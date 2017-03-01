@@ -3,6 +3,7 @@ package com.example.vy.kg;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,9 @@ import android.widget.SeekBar;
 
 import com.example.vy.kg.file.FileReader;
 import com.example.vy.kg.file.parser.XMLParser;
+import com.example.vy.kg.graphics.pixels.MyPixelRect;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        DrawThread.pixelSize = progress/10 + 1;
+                        DrawThread.pixelSize = progress;
                     }
 
                     @Override
@@ -151,35 +155,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_line) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = true;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_round) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = true;
             MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_rect) {
             MySurfaceView.IS_RECT = true;
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_MOSAIC = false;
         } else if (id == R.id.nav_model) {
             new FileInput(this);
         } else if (id == R.id.nav_file){
             DrawThread.figures.addAll(new XMLParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.figures))));
         } else if (id == R.id.nav_mosaic){
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_MOSAIC = true;
+            DrawThread.figures.clear();
+            DrawThread.pixels.clear();
+            int w = DrawThread.width;
+            int h = DrawThread.height;
+            int size = DrawThread.pixelSize;
+            Random random = new Random();
+            MyPixelRect pixel;
+            for (int i = 0; i < h; i += size) {
+                for (int j = 0; j < w; j += size) {
+                    pixel = new MyPixelRect(size, j, i);
+                    pixel.setColor(random.nextInt() % Color.rgb(125,125,125) + Color.rgb(125,125,125));
+                    DrawThread.pixels.add(pixel);
+                }
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);

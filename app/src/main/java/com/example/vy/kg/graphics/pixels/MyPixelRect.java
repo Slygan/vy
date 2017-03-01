@@ -35,8 +35,4 @@ public class MyPixelRect extends MyPixel
 
     }
 
-    @Override
-    public void refactor() {
-        //pixel.set(x ,y ,x + size ,y + size);
-    }
 }

@@ -19,7 +19,6 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public static boolean IS_LINE = false;
     public static boolean IS_ROUND = false;
     public static boolean IS_RECT = false;
-    public static boolean IS_MOSAIC = false;
 
     private DrawThread drawThread;
 
@@ -116,10 +115,6 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 FigureRect rect = new FigureRect(x1,x2,y1,y2);
                 rect.buildRect();
 
-                FigureRect rect2 = new FigureRect(100,200,100,200);
-                rect2.buildRect();
-                DrawThread.figures.add(rect2);
-
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(rect);
@@ -133,17 +128,6 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         if(IS_PEN){
             DrawThread.pixels.add(new MyPixelRect(DrawThread.pixelSize,(int)event.getX(),(int)event.getY()));
-        }
-
-        if(IS_MOSAIC) {
-            int w = DrawThread.width;
-            int h = DrawThread.height;
-            int size = 3;
-            for (int i = 0; i < h; i += size) {
-                for (int j = 0; j < w; j += size) {
-                    DrawThread.pixels.add(new MyPixelRect(size*size, j, i));
-                }
-            }
         }
         return true;
     }
