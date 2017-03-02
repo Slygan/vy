@@ -40,14 +40,17 @@ public class OBJParser implements Parser{
                     FigureLine tempLine1 = new FigureLine(xA,yA,xB,yB);
                     tempLine1.buildParamLine(1);
                     //DrawThread.figures.add(tempLine1);
+                    figures.add(tempLine1);
 
                     FigureLine tempLine2 = new FigureLine(xA,yA,xC,yC);
                     tempLine2.buildParamLine(1);
                     //DrawThread.figures.add(tempLine2);
+                    figures.add(tempLine2);
 
                     FigureLine tempLine3 = new FigureLine(xC,yC,xB,yB);
                     tempLine3.buildParamLine(1);
                     //DrawThread.figures.add(tempLine3);
+                    figures.add(tempLine3);
 
                 }
             }

@@ -3,7 +3,6 @@ package com.example.vy.kg;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,23 +13,21 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-
 import com.example.vy.kg.file.FileReader;
+import com.example.vy.kg.file.parser.OBJParser;
 import com.example.vy.kg.file.parser.XMLParser;
-import com.example.vy.kg.graphics.pixels.MyPixelRect;
-
-import java.util.Random;
+import com.example.vy.kg.graphics.Drawer;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private LinearLayout ll;
 
-    Context context;
+    private Context context;
+    private Drawer drawer;
 
     final String LOG_TAG = "VY_LOGS";
 
@@ -44,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         context = this;
+        drawer = new Drawer(context);
 
         ll = (LinearLayout) findViewById(R.id.surface);
         ll.addView(new MySurfaceView(this));
@@ -121,26 +119,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.menu_clear){
-            DrawThread.pixels.clear();
-            DrawThread.figures.clear();
-        }
-
-        if(item.getItemId() == R.id.menu_load_face){
-            new FileInput(this);
-        }
-
-        return true;
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item){
@@ -171,24 +149,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
         } else if (id == R.id.nav_model) {
-            new FileInput(this);
+            DrawThread.figures.addAll(new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head))));
         } else if (id == R.id.nav_file){
             DrawThread.figures.addAll(new XMLParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.figures))));
         } else if (id == R.id.nav_mosaic){
             DrawThread.figures.clear();
             DrawThread.pixels.clear();
-            int w = DrawThread.width;
-            int h = DrawThread.height;
-            int size = DrawThread.pixelSize;
-            Random random = new Random();
-            MyPixelRect pixel;
-            for (int i = 0; i < h; i += size) {
-                for (int j = 0; j < w; j += size) {
-                    pixel = new MyPixelRect(size, j, i);
-                    pixel.setColor(random.nextInt() % Color.rgb(125,125,125) + Color.rgb(125,125,125));
-                    DrawThread.pixels.add(pixel);
-                }
-            }
+            DrawThread.pixels.addAll(drawer.getMozaik());
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);

@@ -14,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Created by vy on 2/10/17.
  */
 
-class DrawThread extends Thread{
+public class DrawThread extends Thread{
 
     private boolean runFlag = false;
     private SurfaceHolder surfaceHolder;
@@ -27,9 +27,9 @@ class DrawThread extends Thread{
 
     final String LOG_TAG = "VY_LOGS";
 
-    static CopyOnWriteArrayList<MyPixelRect> pixels = new CopyOnWriteArrayList<>();
-    static CopyOnWriteArrayList<Figure> figures = new CopyOnWriteArrayList<>();
-    static CopyOnWriteArrayList<Figure> motion = new CopyOnWriteArrayList<>();
+    public static CopyOnWriteArrayList<MyPixelRect> pixels = new CopyOnWriteArrayList<>();
+    public static CopyOnWriteArrayList<Figure> figures = new CopyOnWriteArrayList<>();
+    public static CopyOnWriteArrayList<Figure> motion = new CopyOnWriteArrayList<>();
 
     public DrawThread(SurfaceHolder surfaceHolder, Resources resources){
         this.surfaceHolder = surfaceHolder;
