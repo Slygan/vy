@@ -1,7 +1,6 @@
 package com.example.vy.kg.file.parser;
 
-import android.util.Log;
-
+import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureLine;
 import com.example.vy.kg.graphics.figures.FigureRect;
@@ -9,37 +8,30 @@ import com.example.vy.kg.graphics.figures.FigureRound;
 
 import java.util.ArrayList;
 
-/**
- * Created by vy on 2/23/17.
- */
-
 public class XMLParser implements Parser {
-
 
     final String LOG_TAG = "VY_LOGS";
 
     public ArrayList<Figure> parse(ArrayList<String> list) {
         ArrayList<Figure> figures = new ArrayList<>();
 
+        Drawer drawer = Drawer.getInstance();
+
         for(String line: list){
             String [] masLine = line.split(" ");
 
             switch (masLine[0]){
                 case "rect":
-                    Log.d(LOG_TAG,String.valueOf(Integer.valueOf(masLine[1])+Integer.valueOf(masLine[2])+Integer.valueOf(masLine[3])+Integer.valueOf(masLine[4])));
-                    FigureRect rect = new FigureRect(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[3]),Integer.valueOf(masLine[4]));
-                    rect.buildRect();
-                    figures.add(rect);
+                    figures.add(drawer.getRectangle(Integer.valueOf(masLine[1]),
+                            Integer.valueOf(masLine[3]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[4]),hex2decimal(masLine[5]),hex2decimal(masLine[6])));
                     break;
                 case "line":
-                    FigureLine fLine = new FigureLine(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[3]),Integer.valueOf(masLine[4]));
-                    fLine.buildParamLine(1);
-                    figures.add(fLine);
+                    figures.add(drawer.getLine(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),
+                            Integer.valueOf(masLine[3]),Integer.valueOf(masLine[4]),hex2decimal(masLine[5])));
                     break;
                 case "round":
-                    FigureRound round = new FigureRound(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[3]));
-                    round.BrazAlgCircle(1);
-                    figures.add(round);
+                    figures.add(drawer.getRound(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),
+                            Integer.valueOf(masLine[3]),hex2decimal(masLine[4]),1));
                     break;
             }
         }
@@ -48,5 +40,16 @@ public class XMLParser implements Parser {
     }
 
 
+    public static int hex2decimal(String s) {
+        String digits = "0123456789ABCDEF";
+        s = s.toUpperCase();
+        int val = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            int d = digits.indexOf(c);
+            val = 16*val + d;
+        }
+        return val;
+    }
 
 }

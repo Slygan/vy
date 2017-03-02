@@ -43,6 +43,7 @@ public class Drawer {
         * TODO: сделать всплывающее окно с выбором метода отрисовки линии
         * */
         FigureLine line = new FigureLine(x1,y1,x2,y2);
+        line.setColor(color);
         line.buildBresenLine(1);
         return line;
     }
@@ -52,12 +53,15 @@ public class Drawer {
         * TODO: сделать всплывающее окно с выбором метода отрисовки круга
         * */
         FigureRound round = new FigureRound(x,y,r);
-        round.BrazAlgCircle(1);
+        round.setColor(color);
+        round.BrazAlgCircle(size);
         return round;
     }
 
     public Figure getRectangle(int x1, int y1, int x2, int y2, int colorBorder, int colorFill) {
         FigureRect rect = new FigureRect(x1, x2, y1, y2);
+        rect.setColor(colorBorder);
+        rect.setColorFill(colorFill);
         rect.buildRect();
         return rect;
     }

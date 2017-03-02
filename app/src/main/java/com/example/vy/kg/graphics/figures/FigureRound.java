@@ -9,7 +9,6 @@ import com.example.vy.kg.graphics.pixels.MyPixelRect;
 public class FigureRound extends Figure {
 
     private int x0,y0,R;
-
     public FigureRound(int x0, int y0, int R){
         this.x0 = x0;
         this.y0 = y0;

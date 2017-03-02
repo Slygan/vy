@@ -7,16 +7,14 @@ import android.view.SurfaceView;
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
-/**
- * Created by vy on 2/10/17.
- */
-
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     public static boolean IS_PEN = false;
     public static boolean IS_LINE = false;
     public static boolean IS_ROUND = false;
     public static boolean IS_RECT = false;
+
+    private int thisColor = 0xFF000000;
 
     private DrawThread drawThread;
 
@@ -37,7 +35,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder(), getResources(),0xff00ff00);
+        drawThread = new DrawThread(getHolder(), getResources());
         drawThread.setRunning(true);
         drawThread.start();
     }
@@ -69,10 +67,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,0));
+                    DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,thisColor));
                     x1 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,0));
+                    DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,thisColor));
                 }
             }
 
@@ -88,10 +86,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 int R = (int)Math.sqrt(Math.abs((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)));
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getRound(x1,y1,R,0,1));
+                    DrawThread.figures.add(drawer.getRound(x1,y1,R,thisColor,1));
                     x1 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getRound(x1,y1,R,0,1));
+                    DrawThread.motion.add(drawer.getRound(x1,y1,R,thisColor,1));
                 }
             }
         }
@@ -105,10 +103,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,0,0));
+                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
                     x1 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,0,0));
+                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
                 }
 
             }

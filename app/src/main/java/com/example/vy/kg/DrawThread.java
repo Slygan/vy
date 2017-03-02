@@ -7,12 +7,7 @@ import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
-
 import java.util.concurrent.CopyOnWriteArrayList;
-
-/**
- * Created by vy on 2/10/17.
- */
 
 public class DrawThread extends Thread{
 
@@ -39,16 +34,6 @@ public class DrawThread extends Thread{
         paint.setTextSize(15);
 
     }
-    public DrawThread(SurfaceHolder surfaceHolder, Resources resources, int color){
-        this.surfaceHolder = surfaceHolder;
-
-        paint = new Paint();
-        paint.setColor(color);
-        paint.setTextSize(15);
-
-    }
-
-
 
     public void setRunning(boolean run) {
         runFlag = run;
@@ -72,15 +57,15 @@ public class DrawThread extends Thread{
                     }
 
                     for (Figure figure : motion) {
+                        paint.setColor(figure.getColor());
                         for (MyPixelRect pixel : figure.getFigure()) {
-                            paint.setColor(pixel.getColor());
                             canvas.drawPoints(pixel.getPixel(), paint);
                         }
                     }
 
                     for (Figure figure : figures) {
+                        paint.setColor(figure.getColor());
                         for (MyPixelRect pixel : figure.getFigure()) {
-                            paint.setColor(pixel.getColor());
                             canvas.drawPoints(pixel.getPixel(), paint);
                         }
                     }

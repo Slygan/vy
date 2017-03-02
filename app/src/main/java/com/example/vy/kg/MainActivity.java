@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_file){
             DrawThread.figures.addAll(new XMLParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.figures))));
         } else if (id == R.id.nav_mosaic){
+            MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_PEN = false;
+            MySurfaceView.IS_LINE = false;
+            MySurfaceView.IS_ROUND = false;
             DrawThread.figures.clear();
             DrawThread.pixels.clear();
             DrawThread.pixels.addAll(drawer.getMozaik());

@@ -1,5 +1,7 @@
 package com.example.vy.kg.graphics.figures;
 
+import com.example.vy.kg.DrawThread;
+import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -20,25 +22,12 @@ public class FigureRect extends Figure {
         this.y2 = y2;
     }
 
-    public CopyOnWriteArrayList<MyPixelRect> buildRect(){
-        pixels.clear();
-
-        FigureLine line1 = new FigureLine(x1,y1,x2,y1);
-        FigureLine line2 = new FigureLine(x1,y1,x1,y2);
-        FigureLine line3 = new FigureLine(x1,y2,x2,y2);
-        FigureLine line4 = new FigureLine(x2,y1,x2,y2);
-
-        line1.buildBresenLine(1);
-        line2.buildBresenLine(1);
-        line3.buildBresenLine(1);
-        line4.buildBresenLine(1);
-
-        pixels.addAll(line1.getFigure());
-        pixels.addAll(line2.getFigure());
-        pixels.addAll(line3.getFigure());
-        pixels.addAll(line4.getFigure());
-
-        return pixels;
+    public void buildRect(){
+        Drawer drawer = Drawer.getInstance();
+        pixels.addAll(drawer.getLine(x1,y1,x2,y1,0).getFigure());
+        pixels.addAll(drawer.getLine(x1,y1,x1,y2,0).getFigure());
+        pixels.addAll(drawer.getLine(x1,y2,x2,y2,0).getFigure());
+        pixels.addAll(drawer.getLine(x2,y1,x2,y2,0).getFigure());
     }
 
 }

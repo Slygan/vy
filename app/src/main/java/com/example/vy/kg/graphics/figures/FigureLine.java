@@ -4,10 +4,6 @@ import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Created by vy on 2/13/17.
- */
-
 public class FigureLine extends Figure {
 
     private int x1,x2,y1,y2;
