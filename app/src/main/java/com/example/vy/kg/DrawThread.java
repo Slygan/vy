@@ -69,10 +69,10 @@ public class DrawThread extends Thread{
                             canvas.drawPoints(pixel.getPixel(), paint);
                         }
                     }
-
-                    //int [] mas = {0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff};
-                    //canvas.drawBitmap(mas,0,4,450,450,4,4,true,null);
-
+/*
+                    int [] mas = {0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff};
+                    canvas.drawBitmap(mas,0,4,450,450,4,4,true,null);
+*/
                 }
             } catch (Exception ex) {
 

@@ -40,7 +40,7 @@ public class XMLParser implements Parser {
     }
 
 
-    public static int hex2decimal(String s) {
+    private static int hex2decimal(String s) {
         String digits = "0123456789ABCDEF";
         s = s.toUpperCase();
         int val = 0;

@@ -1,9 +1,7 @@
 package com.example.vy.kg.graphics;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureLine;
@@ -11,13 +9,8 @@ import com.example.vy.kg.graphics.figures.FigureRect;
 import com.example.vy.kg.graphics.figures.FigureRound;
 import com.example.vy.kg.graphics.pixels.MyPixel;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
-
 import java.util.ArrayList;
 import java.util.Random;
-
-/**
- * Created by vy on 3/1/17.
- */
 
 /*
 * Объект класса сохдается в начале работы программы в классе MainActivity
