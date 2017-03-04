@@ -1,26 +1,25 @@
 package com.example.vy.kg.file;
 
+
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.util.Log;
 
-import com.example.vy.kg.file.WriteBMP;
-
 import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 /**
- * Created by vy on 2/23/17.
+ * Created by oleg on 04.03.2017.
  */
 
-public class FileWriter {
+public class FileReadBMP{
     final String LOG_TAG = "file";
     final String DIR_SD = "DRAW";
     final String FILENAME_SD = "test.txt";
 
-    File _sdPath;
+    java.io.File _sdPath;
 
-    public FileWriter() {
+    public FileReadBMP() {
         // проверяем доступность SD
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             Log.d(LOG_TAG, "SD-карта не доступна: " + Environment.getExternalStorageState());
@@ -29,7 +28,7 @@ public class FileWriter {
         // получаем путь к SD
         _sdPath = Environment.getExternalStorageDirectory();
         // добавляем свой каталог к пути
-        _sdPath = new File(_sdPath.getAbsolutePath() + "/" + DIR_SD);
+        _sdPath = new java.io.File(_sdPath.getAbsolutePath() + "/" + DIR_SD);
         // создаем каталог
         if (_sdPath.mkdirs()) {
             Log.d(LOG_TAG, "Создал: " + _sdPath.getAbsolutePath());
@@ -38,25 +37,28 @@ public class FileWriter {
         }
     }
 
-    private File openFile(String fileName) throws IOException {
-        File sdFile = new File(_sdPath, fileName);
+    private java.io.File openFile(String fileName) throws IOException {
+        java.io.File sdFile = new java.io.File(_sdPath, fileName);
         if (sdFile.exists()) {
             sdFile.createNewFile();
         }
         return sdFile;
     }
 
-    public boolean writeBMP24(String fileName, Bitmap bmp) {
+    public Bitmap readBMP24(String fileName){
         // формируем объект File, который содержит путь к файлу
-        boolean check = false;
+        Bitmap bmp = null;
         try {
+
             File sdFile = openFile(fileName);
-            WriteBMP fbw = new WriteBMP(sdFile);
-            check = fbw.write(bmp);
-            Log.d(LOG_TAG, "Файл записан на SD: " + sdFile.getAbsolutePath());
+            ReadBMP fbr = new ReadBMP(sdFile);
+            bmp = fbr.read();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return check;
+        return bmp;
     }
 }

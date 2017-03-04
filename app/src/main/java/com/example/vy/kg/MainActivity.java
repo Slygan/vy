@@ -3,6 +3,8 @@ package com.example.vy.kg;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,10 +19,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+
+import com.example.vy.kg.file.FileReadBMP;
 import com.example.vy.kg.file.FileReader;
+import com.example.vy.kg.file.FileWriter;
+import com.example.vy.kg.file.WriteBMP;
 import com.example.vy.kg.file.parser.OBJParser;
 import com.example.vy.kg.file.parser.XMLParser;
 import com.example.vy.kg.graphics.Drawer;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -128,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_clear) {
             DrawThread.pixels.clear();
             DrawThread.figures.clear();
+            DrawThread.flag = false;
         } else if (id == R.id.nav_pen) {
             MySurfaceView.IS_PEN = true;
             MySurfaceView.IS_LINE = false;
@@ -160,6 +171,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawThread.figures.clear();
             DrawThread.pixels.clear();
             DrawThread.pixels.addAll(drawer.getMozaik());
+        } else if (id == R.id.nav_save){
+            DrawThread.saveBMP();
+            FileWriter fl = new FileWriter();
+            fl.writeBMP24("test",DrawThread.b);
+            DrawThread.c.drawColor(Color.WHITE);
+        } else if (id == R.id.nav_open){
+            FileReadBMP frb = new FileReadBMP();
+            DrawThread.c.drawBitmap(frb.readBMP24("test"),0,0,DrawThread.paint);
+            DrawThread.flag = true;
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);

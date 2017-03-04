@@ -35,7 +35,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder(), getResources());
+        drawThread = new DrawThread(getHolder(), getResources(), this.getContext());
         drawThread.setRunning(true);
         drawThread.start();
     }
