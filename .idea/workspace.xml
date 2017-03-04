@@ -10,16 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63ef8915-c4b3-46c6-916a-06488492ce8e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/file/FileReadBMP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/DrawThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/DrawThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/MySurfaceView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/MySurfaceView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/file/FileWriter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/vy/kg/file/FileWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" />
     </list>
     <list id="8080f57e-f1b4-42d5-8c89-7f4cf1c6f717" name="Rejected commit: Default" comment="Mosaic" />
     <ignored path="vy.iws" />
@@ -2409,7 +2400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488266979638</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Save/Open">
+      <created>1488649801592</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1488649801592</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2473,7 +2471,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Second commit" />
     <MESSAGE value="Mosaic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mosaic" />
+    <MESSAGE value="Save/Open" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save/Open" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
