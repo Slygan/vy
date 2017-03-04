@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
+import com.example.vy.kg.graphics.figures.FigureBezierLine;
 import com.example.vy.kg.graphics.figures.FigureLine;
 import com.example.vy.kg.graphics.figures.FigureRect;
 import com.example.vy.kg.graphics.figures.FigureRound;
@@ -80,6 +81,15 @@ public class Drawer {
             }
         }
         return mozaik;
+    }
+
+    public Figure getBrezenLine(int [] points){
+        int size = DrawThread.pixelSize;
+
+        FigureBezierLine brezenLine = new FigureBezierLine();
+        brezenLine.getBezierLine(points,size);
+
+        return brezenLine;
     }
 
 }

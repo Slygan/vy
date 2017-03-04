@@ -133,21 +133,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_line) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = true;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_round) {
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = true;
             MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_rect) {
             MySurfaceView.IS_RECT = true;
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
+            MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_model) {
             DrawThread.figures.addAll(new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head))));
         } else if (id == R.id.nav_file){
@@ -157,9 +161,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = false;
+            MySurfaceView.IS_BEZIER = false;
             DrawThread.figures.clear();
             DrawThread.pixels.clear();
             DrawThread.pixels.addAll(drawer.getMozaik());
+        } else if (id == R.id.nav_bezier){
+            MySurfaceView.IS_BEZIER = true;
+            MySurfaceView.IS_RECT = false;
+            MySurfaceView.IS_PEN = false;
+            MySurfaceView.IS_LINE = false;
+            MySurfaceView.IS_ROUND = false;
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
