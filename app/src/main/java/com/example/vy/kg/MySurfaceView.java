@@ -7,25 +7,30 @@ import android.view.SurfaceView;
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
+import java.util.ArrayList;
+
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     public static boolean IS_PEN = false;
     public static boolean IS_LINE = false;
     public static boolean IS_ROUND = false;
     public static boolean IS_RECT = false;
+    public static boolean IS_BEZIER = false;
 
     private int thisColor = 0xFF000000;
 
     private DrawThread drawThread;
-
+    private ArrayList<Integer> points;
     private Context context;
     private Drawer drawer;
 
     public MySurfaceView(Context context) {
         super(context);
         getHolder().addCallback(this);
+
         this.context = context;
         drawer = Drawer.getInstance();
+        points = new ArrayList<>();
     }
 
     @Override
@@ -68,7 +73,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,thisColor));
-                    x1 = -1;
+                    x1 = -1; x2 = -1;
                 }else{
                     DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,thisColor));
                 }
@@ -87,7 +92,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(drawer.getRound(x1,y1,R,thisColor,1));
-                    x1 = -1;
+                    x1 = -1; x2 = -1;
                 }else{
                     DrawThread.motion.add(drawer.getRound(x1,y1,R,thisColor,1));
                 }
@@ -104,11 +109,35 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
-                    x1 = -1;
+                    x1 = -1; x2 = -1;
                 }else{
                     DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
                 }
 
+            }
+        }
+
+        if(IS_BEZIER){
+            if(points.size() == 0){
+                points.add((int)event.getX());
+                points.add((int)event.getY());
+            }else{
+                points.add((int)event.getX());
+                points.add((int)event.getY());
+
+                int [] pts = new int [points.size()];
+
+                for(int i = 0; i < points.size(); i++){
+                    pts[i] = points.get(i);
+                }
+                //System.arraycopy((int[])points.toArray(),0,pts,0,points.size());
+
+                DrawThread.motion.clear();
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    DrawThread.figures.add(drawer.getBrezenLine(pts));
+                }else{
+                    DrawThread.motion.add(drawer.getBrezenLine(pts));
+                }
             }
         }
 
