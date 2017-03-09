@@ -3,7 +3,6 @@ package com.example.vy.kg;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,18 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-
 import com.example.vy.kg.file.FileReadBMP;
 import com.example.vy.kg.file.FileReader;
 import com.example.vy.kg.file.FileWriter;
-import com.example.vy.kg.file.WriteBMP;
 import com.example.vy.kg.file.parser.OBJParser;
 import com.example.vy.kg.file.parser.XMLParser;
 import com.example.vy.kg.graphics.Drawer;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -146,12 +139,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MySurfaceView.IS_RECT = false;
             MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_line) {
+            Drawer.count = 0;
+            drawer.getLine(0,0,0,0,0);
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = true;
             MySurfaceView.IS_ROUND = false;
             MySurfaceView.IS_RECT = false;
             MySurfaceView.IS_BEZIER = false;
         } else if (id == R.id.nav_round) {
+            Drawer.count = 0;
+            drawer.getRound(0,0,0,0,0);
             MySurfaceView.IS_PEN = false;
             MySurfaceView.IS_LINE = false;
             MySurfaceView.IS_ROUND = true;

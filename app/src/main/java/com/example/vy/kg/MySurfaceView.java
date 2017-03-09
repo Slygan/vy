@@ -8,6 +8,7 @@ import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -20,7 +21,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     private int thisColor = 0xFF000000;
 
     private DrawThread drawThread;
-    private ArrayList<Integer> points;
+    private CopyOnWriteArrayList<Integer> points;
     private Context context;
     private Drawer drawer;
 
@@ -30,7 +31,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         this.context = context;
         drawer = Drawer.getInstance();
-        points = new ArrayList<>();
+        points = new CopyOnWriteArrayList<>();
     }
 
     @Override
@@ -118,25 +119,18 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         }
 
         if(IS_BEZIER){
-            if(points.size() == 0){
-                points.add((int)event.getX());
-                points.add((int)event.getY());
-            }else{
+            if(event.getAction() == MotionEvent.ACTION_UP){
                 points.add((int)event.getX());
                 points.add((int)event.getY());
 
-                int [] pts = new int [points.size()];
+                if(points.size() >= 8){
+                    int [] pts = new int [points.size()];
 
-                for(int i = 0; i < points.size(); i++){
-                    pts[i] = points.get(i);
-                }
-                //System.arraycopy((int[])points.toArray(),0,pts,0,points.size());
+                    for(int i = 0; i < points.size(); i++){
+                        pts[i] = points.get(i);
+                    }
 
-                DrawThread.motion.clear();
-                if(event.getAction() == MotionEvent.ACTION_UP){
                     DrawThread.figures.add(drawer.getBrezenLine(pts));
-                }else{
-                    DrawThread.motion.add(drawer.getBrezenLine(pts));
                 }
             }
         }

@@ -1,7 +1,11 @@
 package com.example.vy.kg.graphics;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
+
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureBezierLine;
@@ -23,6 +27,8 @@ public class Drawer {
     private static Drawer instance;
     private Context context;
 
+    public static int count = 0;
+
     private Drawer() { }
     public Drawer(Context context){
         this.context = context;
@@ -33,22 +39,90 @@ public class Drawer {
     }
 
     public Figure getLine(int x1, int y1, int x2, int y2, int color) {
+
+        FigureLine line = new FigureLine(x1,y1,x2,y2);
+        line.setColor(color);
+
+        if(count == 0){
+
+            final String[] mCatsName ={"Param", "Braz"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Choose name"); // заголовок для диалога
+
+            builder.setItems(mCatsName, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    // TODO Auto-generated method stub
+                    Toast.makeText(context, mCatsName[item],
+                            Toast.LENGTH_SHORT).show();
+                    switch (item){
+                        case 0:
+                            count = 1;
+                            break;
+                        case 1:
+                            count = 2;
+                            break;
+                    }
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+        if(count == 1){
+           line.buildParamLine(1);
+        }
+        if(count == 2){
+            line.buildBresenLine(1);
+        }
+
         /*
         * TODO: сделать всплывающее окно с выбором метода отрисовки линии
         * */
-        FigureLine line = new FigureLine(x1,y1,x2,y2);
-        line.setColor(color);
-        line.buildBresenLine(1);
+
         return line;
     }
 
     public Figure getRound(int x, int y, int r, int color, int size) {
+        FigureRound round = new FigureRound(x,y,r);
+        round.setColor(color);
+        if(count == 0){
+
+            final String[] mCatsName ={"Param", "Braz"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Choose name"); // заголовок для диалога
+
+            builder.setItems(mCatsName, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    // TODO Auto-generated method stub
+                    Toast.makeText(context, mCatsName[item],
+                            Toast.LENGTH_SHORT).show();
+                    switch (item){
+                        case 0:
+                            count = 1;
+                            break;
+                        case 1:
+                            count = 2;
+                            break;
+                    }
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+        if(count == 1){
+            round.ParamAlgCircle(1);
+        }
+        if(count == 2){
+            round.BrazAlgCircle(1);
+        }
         /*
         * TODO: сделать всплывающее окно с выбором метода отрисовки круга
         * */
-        FigureRound round = new FigureRound(x,y,r);
-        round.setColor(color);
-        round.BrazAlgCircle(size);
         return round;
     }
 

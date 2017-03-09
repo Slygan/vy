@@ -36,6 +36,10 @@
             android:icon="@mipmap/ic_create_black_24dp"
             android:title="Mosaic"/>
         <item
+            android:id="@+id/nav_bezier"
+            android:icon="@mipmap/ic_create_black_24dp"
+            android:title="Bezier Line"/>
+        <item
             android:id="@+id/nav_save"
             android:icon="@mipmap/ic_face_black_24dp"
             android:title="Save"/>

@@ -46,17 +46,18 @@ public class FigureRound extends Figure {
     public void ParamAlgCircle(int size){
         FigureLine line;
 
-        int x2 = x0, y2 = y0 + R;
-        int x1 = 0, y1 = 0;
-        for(int i = 1; i <= 360; i++){
-            x1 = x2;
-            y1 = y2;
-            x2 = (int)(R * Math.sin((double)(i * Math.PI) / 180) + x0);
-            y2 = (int)(R * Math.cos((double)(i * Math.PI) / 180) + y0);
-
-            line = new FigureLine(x1,y1,x2,y2);
-            line.buildParamLine(size);
-            pixels.addAll(line.pixels);
+        int y = 0;
+        double fors = R / Math.sqrt(2);
+        for(int x = 0; x < fors; x++){
+            y = (int)Math.sqrt(R*R - x*x);
+            pixels.add(new MyPixelRect(size,x0+x,y0+y));
+            pixels.add(new MyPixelRect(size,x0+y,y0+x));
+            pixels.add(new MyPixelRect(size,x0+y,y0-x));
+            pixels.add(new MyPixelRect(size,x0+x,y0-y));
+            pixels.add(new MyPixelRect(size,x0-x,y0-y));
+            pixels.add(new MyPixelRect(size,x0-y,y0-x));
+            pixels.add(new MyPixelRect(size,x0-y,y0+x));
+            pixels.add(new MyPixelRect(size,x0-x,y0+y));
         }
     }
 
