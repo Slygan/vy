@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
+
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
@@ -12,18 +14,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
-    public static boolean IS_PEN = false;
-    public static boolean IS_LINE = false;
-    public static boolean IS_ROUND = false;
-    public static boolean IS_RECT = false;
-    public static boolean IS_BEZIER = false;
-
-    private int thisColor = 0xFF000000;
+    private int currentColor = 0xFF000000;
 
     private DrawThread drawThread;
     private CopyOnWriteArrayList<Integer> points;
     private Context context;
     private Drawer drawer;
+    private Controller controller;
 
     public MySurfaceView(Context context) {
         super(context);
@@ -31,6 +28,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         this.context = context;
         drawer = Drawer.getInstance();
+        controller = Controller.getInstance();
         points = new CopyOnWriteArrayList<>();
     }
 
@@ -61,10 +59,15 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     private int x1 = -1, y1 = 0, x2 = 0, y2 = 0;
 
+
+    /*
+    * Обработка любых дейстивй пользователя
+    * по области экрана
+    * */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if(IS_LINE){
+        if(controller.IS_LINE()){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -73,16 +76,16 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,thisColor));
+                    DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,currentColor));
                     x1 = -1; x2 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,thisColor));
+                    DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,currentColor));
                 }
             }
 
         }
 
-        if(IS_ROUND){
+        if(controller.IS_ROUND()){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -92,15 +95,15 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 int R = (int)Math.sqrt(Math.abs((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1)));
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getRound(x1,y1,R,thisColor,1));
+                    DrawThread.figures.add(drawer.getRound(x1,y1,R,currentColor,1));
                     x1 = -1; x2 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getRound(x1,y1,R,thisColor,1));
+                    DrawThread.motion.add(drawer.getRound(x1,y1,R,currentColor,1));
                 }
             }
         }
 
-        if(IS_RECT){
+        if(controller.IS_RECT()){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -109,16 +112,16 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
+                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,currentColor,currentColor));
                     x1 = -1; x2 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,thisColor,thisColor));
+                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,currentColor,currentColor));
                 }
 
             }
         }
 
-        if(IS_BEZIER){
+        if(controller.IS_BEZIER()){
             if(event.getAction() == MotionEvent.ACTION_UP){
                 points.add((int)event.getX());
                 points.add((int)event.getY());
@@ -135,7 +138,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-        if(IS_PEN){
+        if(controller.IS_PEN()){
             DrawThread.pixels.add(new MyPixelRect(DrawThread.pixelSize,(int)event.getX(),(int)event.getY()));
         }
         return true;

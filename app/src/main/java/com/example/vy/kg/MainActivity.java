@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Context context;
     private Drawer drawer;
+    private Controller controller;
 
     final String LOG_TAG = "VY_LOGS";
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         context = this;
         drawer = new Drawer(context);
+        controller = new Controller(context);
 
         ll = (LinearLayout) findViewById(R.id.surface);
         ll.addView(new MySurfaceView(this));
@@ -129,55 +131,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_clear) {
-            DrawThread.pixels.clear();
-            DrawThread.figures.clear();
-            DrawThread.flag = false;
+            controller.clearFild();
         } else if (id == R.id.nav_pen) {
-            MySurfaceView.IS_PEN = true;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_BEZIER = false;
+            controller.setPenTool();
         } else if (id == R.id.nav_line) {
-            Drawer.count = 0;
-            drawer.getLine(0,0,0,0,0);
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = true;
-            MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_BEZIER = false;
+            controller.setLineTool();
         } else if (id == R.id.nav_round) {
-            Drawer.count = 0;
-            drawer.getRound(0,0,0,0,0);
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = true;
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_BEZIER = false;
+            controller.setRoundTool();
         } else if (id == R.id.nav_rect) {
-            MySurfaceView.IS_RECT = true;
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_BEZIER = false;
+            controller.setRectTool();
         } else if (id == R.id.nav_model) {
             DrawThread.figures.addAll(new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head))));
         } else if (id == R.id.nav_file){
             DrawThread.figures.addAll(new XMLParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.figures))));
         } else if (id == R.id.nav_bezier){
-            MySurfaceView.IS_BEZIER = true;
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = false;
+            controller.setBezierTool();
         } else if (id == R.id.nav_mosaic){
-            MySurfaceView.IS_RECT = false;
-            MySurfaceView.IS_PEN = false;
-            MySurfaceView.IS_LINE = false;
-            MySurfaceView.IS_ROUND = false;
-            MySurfaceView.IS_BEZIER = false;
-            DrawThread.figures.clear();
-            DrawThread.pixels.clear();
+            controller.clearTools();
             DrawThread.pixels.addAll(drawer.getMozaik());
         } else if (id == R.id.nav_save){
             DrawThread.saveBMP();

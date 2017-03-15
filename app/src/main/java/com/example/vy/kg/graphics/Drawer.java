@@ -27,8 +27,6 @@ public class Drawer {
     private static Drawer instance;
     private Context context;
 
-    public static int count = 0;
-
     private Drawer() { }
     public Drawer(Context context){
         this.context = context;
@@ -42,87 +40,17 @@ public class Drawer {
 
         FigureLine line = new FigureLine(x1,y1,x2,y2);
         line.setColor(color);
-
-        if(count == 0){
-
-            final String[] mCatsName ={"Param", "Braz"};
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Choose name"); // заголовок для диалога
-
-            builder.setItems(mCatsName, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    // TODO Auto-generated method stub
-                    Toast.makeText(context, mCatsName[item],
-                            Toast.LENGTH_SHORT).show();
-                    switch (item){
-                        case 0:
-                            count = 1;
-                            break;
-                        case 1:
-                            count = 2;
-                            break;
-                    }
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-
-        if(count == 1){
-           line.buildParamLine(1);
-        }
-        if(count == 2){
-            line.buildBresenLine(1);
-        }
-
-        /*
-        * TODO: сделать всплывающее окно с выбором метода отрисовки линии
-        * */
+        line.buildBresenLine(1);
 
         return line;
     }
 
     public Figure getRound(int x, int y, int r, int color, int size) {
+
         FigureRound round = new FigureRound(x,y,r);
         round.setColor(color);
-        if(count == 0){
+        round.BrazAlgCircle(1);
 
-            final String[] mCatsName ={"Param", "Braz"};
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Choose name"); // заголовок для диалога
-
-            builder.setItems(mCatsName, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    // TODO Auto-generated method stub
-                    Toast.makeText(context, mCatsName[item],
-                            Toast.LENGTH_SHORT).show();
-                    switch (item){
-                        case 0:
-                            count = 1;
-                            break;
-                        case 1:
-                            count = 2;
-                            break;
-                    }
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-
-        if(count == 1){
-            round.ParamAlgCircle(1);
-        }
-        if(count == 2){
-            round.BrazAlgCircle(1);
-        }
-        /*
-        * TODO: сделать всплывающее окно с выбором метода отрисовки круга
-        * */
         return round;
     }
 
