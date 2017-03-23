@@ -10,7 +10,8 @@ public abstract class MyPixel {
     protected int color = 0xFF000000;
     protected float [] points;
 
-    public MyPixel(int size,int x, int y){
+
+    public MyPixel(int size, int x, int y){
         this.size = size;
         this.x = x;
         this.y = y;
@@ -21,6 +22,13 @@ public abstract class MyPixel {
     }
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
     }
 
     public  float[] getPixel(){

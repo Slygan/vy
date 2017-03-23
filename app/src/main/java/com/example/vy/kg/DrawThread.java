@@ -89,7 +89,7 @@ public class DrawThread extends Thread{
                     /*
                     int [] mas = {0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff};
                     canvas.drawBitmap(mas,0,4,450,450,4,4,true,null);
-*/
+                    */
                 }
             } catch (Exception ex) {
 

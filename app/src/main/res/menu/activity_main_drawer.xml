@@ -20,6 +20,14 @@
             android:icon="@mipmap/ic_create_black_24dp"
             android:title="Rectangle" />
         <item
+            android:id="@+id/nav_polygon"
+            android:icon="@mipmap/ic_create_black_24dp"
+            android:title="Polygon"/>
+        <item
+            android:id="@+id/nav_zatrav"
+            android:icon="@mipmap/ic_create_black_24dp"
+            android:title="Затравка"/>
+        <item
             android:id="@+id/nav_round"
             android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
             android:title="Round" />

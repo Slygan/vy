@@ -1,7 +1,6 @@
 package com.example.vy.kg;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.example.vy.kg.graphics.Drawer;
 
@@ -9,11 +8,14 @@ public class Controller {
     private Context context;
     private Drawer drawer;
 
-    private boolean IS_PEN = false;
-    private boolean IS_LINE = false;
-    private boolean IS_ROUND = false;
-    private boolean IS_RECT = false;
-    private boolean IS_BEZIER = false;
+    public boolean IS_PEN = false;
+    public boolean IS_LINE = false;
+    public boolean IS_ROUND = false;
+    public boolean IS_RECT = false;
+    public boolean IS_BEZIER = false;
+    public boolean IS_POLYGON = false;
+
+    public boolean IS_ZATRAVKA = false;
 
     private static Controller instance;
 
@@ -27,64 +29,47 @@ public class Controller {
         return instance;
     }
 
-    public boolean IS_BEZIER() {
-        return IS_BEZIER;
-    }
-    public boolean IS_RECT() {
-        return IS_RECT;
-    }
-    public boolean IS_ROUND() {
-        return IS_ROUND;
-    }
-    public boolean IS_LINE() {
-        return IS_LINE;
-    }
-    public boolean IS_PEN() {
-        return IS_PEN;
-    }
-
     public void setPenTool(){
+        clearTools();
         IS_PEN = true;
-        IS_LINE = false;
-        IS_ROUND = false;
-        IS_RECT = false;
-        IS_BEZIER = false;
     }
     public void setLineTool(){
-        IS_PEN = false;
+        clearTools();
         IS_LINE = true;
-        IS_ROUND = false;
-        IS_RECT = false;
-        IS_BEZIER = false;
     }
     public void setRoundTool(){
-        IS_PEN = false;
-        IS_LINE = false;
+        clearTools();
         IS_ROUND = true;
-        IS_RECT = false;
-        IS_BEZIER = false;
     }
     public void setRectTool(){
+        clearTools();
         IS_RECT = true;
-        IS_PEN = false;
-        IS_LINE = false;
-        IS_ROUND = false;
-        IS_BEZIER = false;
     }
     public void setBezierTool(){
+        clearTools();
         IS_BEZIER = true;
-        IS_RECT = false;
-        IS_PEN = false;
-        IS_LINE = false;
-        IS_ROUND = false;
     }
+    public void setPolygonTool(){
+        clearTools();
+        IS_POLYGON = true;
+    }
+
+    public void setZatravka(){
+        clearTools();
+        IS_ZATRAVKA = true;
+    }
+
     public void clearTools(){
         IS_PEN = false;
         IS_LINE = false;
         IS_ROUND = false;
         IS_RECT = false;
         IS_BEZIER = false;
+        IS_POLYGON = false;
+        IS_ZATRAVKA = false;
     }
+
+
 
     public void clearFild(){
         DrawThread.pixels.clear();

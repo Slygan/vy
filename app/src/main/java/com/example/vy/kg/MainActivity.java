@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             controller.setRoundTool();
         } else if (id == R.id.nav_rect) {
             controller.setRectTool();
+        } else if (id == R.id.nav_polygon) {
+            controller.setPolygonTool();
         } else if (id == R.id.nav_model) {
             DrawThread.figures.addAll(new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head))));
         } else if (id == R.id.nav_file){
@@ -149,7 +151,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_mosaic){
             controller.clearTools();
             DrawThread.pixels.addAll(drawer.getMozaik());
-        } else if (id == R.id.nav_save){
+        } else if(id == R.id.nav_zatrav){
+            controller.setZatravka();
+        } if (id == R.id.nav_save){
             DrawThread.saveBMP();
             FileWriter fl = new FileWriter();
             fl.writeBMP24("test",DrawThread.b);

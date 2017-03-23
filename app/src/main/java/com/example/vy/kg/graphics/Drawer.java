@@ -10,6 +10,7 @@ import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureBezierLine;
 import com.example.vy.kg.graphics.figures.FigureLine;
+import com.example.vy.kg.graphics.figures.FigurePolygon;
 import com.example.vy.kg.graphics.figures.FigureRect;
 import com.example.vy.kg.graphics.figures.FigureRound;
 import com.example.vy.kg.graphics.pixels.MyPixel;
@@ -92,6 +93,15 @@ public class Drawer {
         brezenLine.getBezierLine(points,size);
 
         return brezenLine;
+    }
+
+    public Figure getPolygon(int x1, int x2, int x3, int y1, int y2, int y3, int colorBorder, int colorFill){
+        FigurePolygon polygon = new FigurePolygon(x1, x2, x3, y1, y2, y3);
+        polygon.setColor(colorBorder);
+        polygon.setColorFill(colorFill);
+        polygon.buildPolygon();
+
+        return polygon;
     }
 
 }

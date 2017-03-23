@@ -7,6 +7,7 @@ import android.view.SurfaceView;
 import android.widget.Toast;
 
 import com.example.vy.kg.graphics.Drawer;
+import com.example.vy.kg.graphics.coloring.Coloring;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     private int currentColor = 0xFF000000;
 
-    private DrawThread drawThread;
     private CopyOnWriteArrayList<Integer> points;
+    private int x1 = -1, y1 = -1, x2 = -1, y2 = -1, x3 = -1, y3 = -1;
+
+    private DrawThread drawThread;
     private Context context;
     private Drawer drawer;
     private Controller controller;
@@ -57,7 +60,6 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
-    private int x1 = -1, y1 = 0, x2 = 0, y2 = 0;
 
 
     /*
@@ -67,7 +69,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if(controller.IS_LINE()){
+        if(controller.IS_LINE){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -85,7 +87,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
         }
 
-        if(controller.IS_ROUND()){
+        if(controller.IS_ROUND){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -103,7 +105,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-        if(controller.IS_RECT()){
+        if(controller.IS_RECT){
             if(x1 == -1){
                 x1 = (int)event.getX();
                 y1 = (int)event.getY();
@@ -121,7 +123,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-        if(controller.IS_BEZIER()){
+        if(controller.IS_BEZIER){
             if(event.getAction() == MotionEvent.ACTION_UP){
                 points.add((int)event.getX());
                 points.add((int)event.getY());
@@ -138,7 +140,44 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             }
         }
 
-        if(controller.IS_PEN()){
+        if(controller.IS_POLYGON){
+            if(x1 == -1) {
+                x1 = (int) event.getX();
+                y1 = (int) event.getY();
+            } else {
+                if(x2 == -1){
+                    x2 = (int)event.getX();
+                    y2 = (int)event.getY();
+                    DrawThread.motion.clear();
+                    if(event.getAction() == MotionEvent.ACTION_UP){
+                        DrawThread.figures.add(drawer.getLine(x1,y1,x2,y2,currentColor));
+                    }else{
+                        DrawThread.motion.add(drawer.getLine(x1,y1,x2,y2,currentColor));
+                        x2 = -1;
+                    }
+                }else{
+                    x3 = (int)event.getX();
+                    y3 = (int)event.getY();
+                    DrawThread.motion.clear();
+                    if(event.getAction() == MotionEvent.ACTION_UP && x3!=-1){
+                        DrawThread.figures.remove(DrawThread.figures.size()-1);
+                        DrawThread.figures.add(drawer.getPolygon(x1,x2,x3,y1,y2,y3,currentColor,currentColor));
+                        x1 = -1; x2 = -1; x3 = -1;
+                    }else{
+                        DrawThread.motion.add(drawer.getPolygon(x1,x2,x3,y1,y2,y3,currentColor,currentColor));
+                        x3 = -1;
+                    }
+                }
+            }
+        }
+
+        if(controller.IS_ZATRAVKA){
+            DrawThread.saveBMP();
+            Coloring color = new Coloring();
+            DrawThread.pixels.addAll(color.paintOverZatrav((int)event.getX(),(int)event.getY(),currentColor,DrawThread.b));
+        }
+
+        if(controller.IS_PEN){
             DrawThread.pixels.add(new MyPixelRect(DrawThread.pixelSize,(int)event.getX(),(int)event.getY()));
         }
         return true;
