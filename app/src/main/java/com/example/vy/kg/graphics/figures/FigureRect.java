@@ -1,5 +1,6 @@
 package com.example.vy.kg.graphics.figures;
 
+import com.example.vy.kg.Controller;
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
@@ -24,10 +25,10 @@ public class FigureRect extends Figure {
 
     public void buildRect(){
         Drawer drawer = Drawer.getInstance();
-        pixels.addAll(drawer.getLine(x1,y1,x2,y1,0).getFigure());
-        pixels.addAll(drawer.getLine(x1,y1,x1,y2,0).getFigure());
-        pixels.addAll(drawer.getLine(x1,y2,x2,y2,0).getFigure());
-        pixels.addAll(drawer.getLine(x2,y1,x2,y2,0).getFigure());
+        pixels.addAll(drawer.getLine(x1,y1,x2,y1, Controller.colorLine).getFigure());
+        pixels.addAll(drawer.getLine(x1,y1,x1,y2,Controller.colorLine).getFigure());
+        pixels.addAll(drawer.getLine(x1,y2,x2,y2,Controller.colorLine).getFigure());
+        pixels.addAll(drawer.getLine(x2,y1,x2,y2,Controller.colorLine).getFigure());
     }
 
     public void buildFillRect(int colorBorder, int colorFill){

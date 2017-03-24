@@ -39,7 +39,7 @@ public class Drawer {
 
         FigureLine line = new FigureLine(x1,y1,x2,y2);
         line.setColor(color);
-        line.buildBresenLine(1);
+        line.buildBresenLine(Controller.pixelSize);
 
         return line;
     }
@@ -48,7 +48,7 @@ public class Drawer {
 
         FigureRound round = new FigureRound(x,y,r);
         round.setColor(color);
-        round.BrazAlgCircle(1);
+        round.BrazAlgCircle(Controller.pixelSize);
 
         return round;
     }
@@ -78,7 +78,7 @@ public class Drawer {
         return mozaik;
     }
 
-    public Figure getBrezenLine(int [] points){
+    public Figure getBezierLine(int [] points){
         int size = Controller.pixelSize;
 
         FigureCurve brezenLine = new FigureCurve();

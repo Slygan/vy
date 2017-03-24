@@ -4,13 +4,11 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.coloring.Coloring;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback {
@@ -134,7 +132,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                         pts[i] = points.get(i);
                     }
 
-                    DrawThread.figures.add(drawer.getBrezenLine(pts));
+                    DrawThread.figures.add(drawer.getBezierLine(pts));
                 }
             }
         }
