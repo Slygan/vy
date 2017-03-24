@@ -18,7 +18,6 @@ public class DrawThread extends Thread{
     private SurfaceHolder surfaceHolder;
     public static Paint paint;
 
-    public static int pixelSize = 1;
     public static int width = 0;
     public static int height = 0;
     public static Bitmap b = null;

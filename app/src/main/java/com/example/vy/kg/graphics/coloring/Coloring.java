@@ -14,7 +14,7 @@ public class Coloring {
 
         ArrayList<MyPixelRect> pixels = new ArrayList<>();
         Stack<MyPixelRect> stack = new Stack<>();
-        stack.push(new MyPixelRect(1,x,y));
+        stack.push(new MyPixelRect(1,x,y,colorFill));
         int width = bmp.getWidth();
         int height = bmp.getHeight();
 
@@ -29,7 +29,7 @@ public class Coloring {
             int tempX = x, tempY = y;
             //холостой пробег влево
             while (bmp.getPixel(tempX, tempY) == -1 && tempX>0) {
-                pixels.add(new MyPixelRect(1, tempX, tempY));
+                pixels.add(new MyPixelRect(1, tempX, tempY,colorFill));
                 bmp.setPixel(tempX, tempY, colorFill);
                 tempX--;
                 rowCount++;
@@ -37,7 +37,7 @@ public class Coloring {
             tempX = x + 1;
             //холостой пробег вправо
             while (tempX<width-1 && bmp.getPixel(tempX, tempY) == -1) {
-                pixels.add(new MyPixelRect(1, tempX, tempY));
+                pixels.add(new MyPixelRect(1, tempX, tempY,colorFill));
                 bmp.setPixel(tempX, tempY, colorFill);
                 tempX++;
                 rowCount++;
@@ -52,7 +52,7 @@ public class Coloring {
                     tempX--;
                     i++;
                     if (!is1 && bmp.getPixel(tempX, tempY) == -1) {
-                        stack.push(new MyPixelRect(1, tempX, tempY));
+                        stack.push(new MyPixelRect(1, tempX, tempY,colorFill));
                         is1 = true;
                         if (is2) {
                             break;
@@ -60,7 +60,7 @@ public class Coloring {
                     }
                     if (!is2 && bmp.getPixel(tempX, tempY2) == -1) {
                         is2 = true;
-                        stack.push(new MyPixelRect(1, tempX, tempY2));
+                        stack.push(new MyPixelRect(1, tempX, tempY2,colorFill));
                         if (is1) {
                             break;
                         }

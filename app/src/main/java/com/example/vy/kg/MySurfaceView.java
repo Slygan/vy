@@ -63,7 +63,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     /*
     * Обработка любых дейстивй пользователя
-    * по области экрана
+    * на области экрана
     * */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -177,7 +177,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         }
 
         if(controller.IS_PEN){
-            DrawThread.pixels.add(new MyPixelRect(DrawThread.pixelSize,(int)event.getX(),(int)event.getY()));
+            DrawThread.pixels.add(new MyPixelRect(Controller.pixelSize,(int)event.getX(),(int)event.getY(),Controller.colorLine));
         }
         return true;
     }

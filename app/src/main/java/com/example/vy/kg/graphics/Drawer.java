@@ -3,6 +3,7 @@ package com.example.vy.kg.graphics;
 import android.content.Context;
 import android.graphics.Color;
 
+import com.example.vy.kg.Controller;
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureCurve;
@@ -60,15 +61,9 @@ public class Drawer {
         return rect;
     }
 
-    public MyPixel getPixel(int x, int y, int size, int color) {
-        MyPixelRect pixelRect = new MyPixelRect(size, x, y);
-        pixelRect.setColor(color);
-        return pixelRect;
-    }
-
     public ArrayList<MyPixelRect> getMozaik(){
         ArrayList<MyPixelRect> mozaik = new ArrayList<>();
-        int size = DrawThread.pixelSize;
+        int size = Controller.pixelSize;
         int w = DrawThread.width + size;
         int h = DrawThread.height + size;
         Random random = new Random();
@@ -84,7 +79,7 @@ public class Drawer {
     }
 
     public Figure getBrezenLine(int [] points){
-        int size = DrawThread.pixelSize;
+        int size = Controller.pixelSize;
 
         FigureCurve brezenLine = new FigureCurve();
         brezenLine.getBezierLine(points,size);

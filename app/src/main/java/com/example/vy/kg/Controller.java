@@ -9,7 +9,7 @@ public class Controller {
     private Drawer drawer;
     public static int colorLine = 0xFF000000;
     public static int colorFill = 0xFF000000;
-
+    public static int pixelSize = 1;
 
     public boolean IS_PEN = false;
     public boolean IS_LINE = false;
