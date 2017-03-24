@@ -18,16 +18,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
+
 import com.example.vy.kg.file.FileReadBMP;
 import com.example.vy.kg.file.FileReader;
 import com.example.vy.kg.file.FileWriter;
 import com.example.vy.kg.file.parser.OBJParser;
 import com.example.vy.kg.file.parser.XMLParser;
 import com.example.vy.kg.graphics.Drawer;
+import com.skydoves.colorpickerview.ColorPickerView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private LinearLayout ll;
+    private ColorPickerView colorPickerLine;
+    private ColorPickerView colorPickerFill;
 
     private Context context;
     private Drawer drawer;
@@ -63,10 +68,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final AlertDialog.Builder ratingdialog = new AlertDialog.Builder(context);
 
                 View linearlayout = getLayoutInflater().inflate(R.layout.change_pixel, null);
+
                 ratingdialog.setView(linearlayout);
 
                 SeekBar size = (SeekBar) linearlayout.findViewById(R.id.seekBar);
-
                 size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -84,18 +89,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
+
+                colorPickerLine = (ColorPickerView) linearlayout.findViewById(R.id.colorPickerLine);
+                colorPickerFill = (ColorPickerView) linearlayout.findViewById(R.id.colorPickerFill);
+                colorPickerLine.setColorListener(new ColorPickerView.ColorListener() {
+                    @Override
+                    public void onColorSelected(int color) {
+                        Controller.colorLine = color;
+                    }
+                });
+                colorPickerFill.setColorListener(new ColorPickerView.ColorListener() {
+                    @Override
+                    public void onColorSelected(int color) {
+                        Controller.colorFill = color;
+                    }
+                });
+
+
                 ratingdialog.setPositiveButton("ОК",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         })
-                        .setNegativeButton("Отмена",
+                        /*.setNegativeButton("Отмена",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
-                                });
+                                })*/;
 
                 ratingdialog.create();
                 ratingdialog.show();
