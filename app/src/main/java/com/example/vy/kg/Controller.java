@@ -7,6 +7,9 @@ import com.example.vy.kg.graphics.Drawer;
 public class Controller {
     private Context context;
     private Drawer drawer;
+    public static int colorLine = 0xFF000000;
+    public static int colorFill = 0xFF000000;
+
 
     public boolean IS_PEN = false;
     public boolean IS_LINE = false;

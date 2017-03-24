@@ -1,17 +1,14 @@
 package com.example.vy.kg.file.parser;
 
+import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureLine;
 
 import java.util.ArrayList;
 
-/**
- * Created by vy on 2/23/17.
- */
-
 public class OBJParser implements Parser{
-    private final int width = 700;
-    private final int height = 1000;
+    private final int width = DrawThread.width;
+    private final int height = DrawThread.height;
 
     @Override
     public ArrayList<Figure> parse(ArrayList<String> list) {

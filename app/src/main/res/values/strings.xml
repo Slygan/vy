@@ -7,4 +7,20 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_clear">Очистить</string>
+    <string name="nav_menu_instument">Инструменты</string>
+    <string name="nav_pen">Карадаш</string>
+    <string name="nav_line">Линия</string>
+    <string name="nav_rect">Прямоугольник</string>
+    <string name="nav_polygon_3">Полигон(3)</string>
+    <string name="nav_round">Круг</string>
+    <string name="nav_clear">Очистить</string>
+    <string name="nav_menu_zalivka">Заливка</string>
+    <string name="nav_zatrav">Затравка</string>
+    <string name="nav_curve">Кривая</string>
+    <string name="nav_menu_file">Файл</string>
+    <string name="nav_model">Person</string>
+    <string name="nav_file">File</string>
+    <string name="nav_save">Save</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_mosaic">Mosaic</string>
 </resources>

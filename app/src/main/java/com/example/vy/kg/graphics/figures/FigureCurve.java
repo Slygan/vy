@@ -2,11 +2,8 @@ package com.example.vy.kg.graphics.figures;
 
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
-/**
- * Created by vy on 3/4/17.
- */
 
-public class FigureBezierLine extends Figure {
+public class FigureCurve extends Figure {
 
     public void getBezierLine(int[] points, int size) {
 

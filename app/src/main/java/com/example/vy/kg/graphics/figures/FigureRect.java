@@ -30,4 +30,14 @@ public class FigureRect extends Figure {
         pixels.addAll(drawer.getLine(x2,y1,x2,y2,0).getFigure());
     }
 
+    public void buildFillRect(int colorBorder, int colorFill){
+        Drawer drawer = Drawer.getInstance();
+        pixels.addAll(drawer.getRectangle(x1,y1,x2,y2,colorBorder,colorFill).getFigure());
+        for(int i = x1+1; i < x2-1; i++){
+            for(int j = y1+1; j < y2-1; j++){
+                pixels.add(new MyPixelRect(i,j,colorFill));
+            }
+        }
+    }
+
 }

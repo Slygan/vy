@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/nav_clear"
             android:icon="@mipmap/ic_clear_black_24dp"
-            android:title="CLear"/>
-        <item
-            android:id="@+id/nav_pen"
-            android:icon="@mipmap/ic_gesture_black_24dp"
-            android:title="Pen" />
-        <item
-            android:id="@+id/nav_line"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Line" />
-        <item
-            android:id="@+id/nav_rect"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Rectangle" />
-        <item
-            android:id="@+id/nav_polygon"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Polygon"/>
-        <item
-            android:id="@+id/nav_zatrav"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Затравка"/>
-        <item
-            android:id="@+id/nav_round"
-            android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
-            android:title="Round" />
-        <item
-            android:id="@+id/nav_model"
-            android:icon="@mipmap/ic_face_black_24dp"
-            android:title="Person" />
-        <item
-            android:id="@+id/nav_file"
-            android:icon="@mipmap/ic_face_black_24dp"
-            android:title="File"/>
-        <item
-            android:id="@+id/nav_mosaic"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Mosaic"/>
-        <item
-            android:id="@+id/nav_bezier"
-            android:icon="@mipmap/ic_create_black_24dp"
-            android:title="Bezier Line"/>
-        <item
-            android:id="@+id/nav_save"
-            android:icon="@mipmap/ic_face_black_24dp"
-            android:title="Save"/>
-        <item
-            android:id="@+id/nav_open"
-            android:icon="@mipmap/ic_face_black_24dp"
-            android:title="Open"/>
+            android:title="@string/nav_clear"/>
 
-    </group>
+        <item
+             android:id="@+id/nav_mosaic"
+             android:icon="@mipmap/ic_create_black_24dp"
+              android:title="@string/nav_mosaic"/>
 
-    <!--<item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@mipmap/ic_launcher"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@mipmap/ic_launcher"
-                android:title="Send" />
-        </menu>
-    </item>-->
+        <item android:title="@string/nav_menu_instument">
+            <menu>
+                <item
+                    android:id="@+id/nav_pen"
+                    android:icon="@mipmap/ic_gesture_black_24dp"
+                    android:title="@string/nav_pen" />
+                <item
+                    android:id="@+id/nav_line"
+                    android:icon="@mipmap/ic_vector_line_black_24dp"
+                    android:title="@string/nav_line" />
+                <item
+                    android:id="@+id/nav_rect"
+                    android:icon="@mipmap/ic_square_outline_black_24dp"
+                    android:title="@string/nav_rect" />
+                <item
+                    android:id="@+id/nav_polygon"
+                    android:icon="@mipmap/ic_create_black_24dp"
+                    android:title="@string/nav_polygon_3"/>
+                <item
+                    android:id="@+id/nav_round"
+                    android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
+                    android:title="@string/nav_round" />
+                <item
+                    android:id="@+id/nav_bezier"
+                    android:icon="@mipmap/ic_create_black_24dp"
+                    android:title="@string/nav_curve"/>
+            </menu>
+        </item>
+
+        <item android:title="@string/nav_menu_zalivka">
+            <menu>
+                <item
+                    android:id="@+id/nav_zatrav"
+                    android:icon="@mipmap/ic_format_color_fill_black_24dp"
+                    android:title="@string/nav_zatrav"/>
+            </menu>
+        </item>
+
+
+        <item android:title="@string/nav_menu_file">
+            <menu>
+                <item
+                    android:id="@+id/nav_model"
+                    android:icon="@mipmap/ic_face_black_24dp"
+                    android:title="@string/nav_model" />
+                <item
+                    android:id="@+id/nav_file"
+                    android:icon="@mipmap/ic_file_black_24dp"
+                    android:title="@string/nav_file"/>
+                <item
+                    android:id="@+id/nav_save"
+                    android:icon="@mipmap/ic_file_black_24dp"
+                    android:title="@string/nav_save"/>
+                <item
+                    android:id="@+id/nav_open"
+                    android:icon="@mipmap/ic_file_black_24dp"
+                    android:title="@string/nav_open"/>
+            </menu>
+        </item>
 
 </menu>

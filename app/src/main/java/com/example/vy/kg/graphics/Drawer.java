@@ -1,14 +1,11 @@
 package com.example.vy.kg.graphics;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
-import android.widget.Toast;
 
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
-import com.example.vy.kg.graphics.figures.FigureBezierLine;
+import com.example.vy.kg.graphics.figures.FigureCurve;
 import com.example.vy.kg.graphics.figures.FigureLine;
 import com.example.vy.kg.graphics.figures.FigurePolygon;
 import com.example.vy.kg.graphics.figures.FigureRect;
@@ -89,7 +86,7 @@ public class Drawer {
     public Figure getBrezenLine(int [] points){
         int size = DrawThread.pixelSize;
 
-        FigureBezierLine brezenLine = new FigureBezierLine();
+        FigureCurve brezenLine = new FigureCurve();
         brezenLine.getBezierLine(points,size);
 
         return brezenLine;

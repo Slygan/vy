@@ -20,25 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar" />
-<!--
-    <LinearLayout
-        android:weightSum="2"
-        android:orientation="horizontal"
+
+    <com.android.colorpicker.ColorPickerPalette
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/palette"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_weight="1"
-            android:text="ОК"
-            android:id="@+id/seekOK"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_weight="1"
-            android:text="CANCEL"
-            android:id="@+id/seekCANCEL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
--->
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="16dp"
+        />
 
 </LinearLayout>
