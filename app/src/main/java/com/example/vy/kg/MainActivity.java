@@ -106,16 +106,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 colorPickerLine = (ColorPickerView) linearlayout.findViewById(R.id.colorPickerLine);
                 colorPickerFill = (ColorPickerView) linearlayout.findViewById(R.id.colorPickerFill);
+
+                final View colorLineRect = linearlayout.findViewById(R.id.colorLineRect);
+                final View colorFillRect = linearlayout.findViewById(R.id.colorFillRect);
+
                 colorPickerLine.setColorListener(new ColorPickerView.ColorListener() {
                     @Override
                     public void onColorSelected(int color) {
                         Controller.colorLine = color;
+                        colorLineRect.setBackgroundColor(color);
                     }
                 });
                 colorPickerFill.setColorListener(new ColorPickerView.ColorListener() {
                     @Override
                     public void onColorSelected(int color) {
                         Controller.colorFill = color;
+                        colorFillRect.setBackgroundColor(color);
                     }
                 });
 

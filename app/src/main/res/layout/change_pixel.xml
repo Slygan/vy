@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
 
@@ -31,35 +31,72 @@
 
         <TextView
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="Цвет линии"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.skydoves.colorpickerview.ColorPickerView
-            android:layout_gravity="center"
-            android:id="@+id/colorPickerLine"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            app:src="@drawable/palette"
-            app:selector="@drawable/wheel" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.skydoves.colorpickerview.ColorPickerView
+                android:layout_gravity="left"
+                android:id="@+id/colorPickerLine"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:src="@drawable/palette"
+                app:selector="@drawable/wheel" />
+
+            <View
+                android:id="@+id/colorLineRect"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_width="80dp"
+                android:background="@color/colorWhite"
+                android:layout_height="80dp"/>
+
+        </LinearLayout>
+
+
 
         <TextView
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:text="Цвет заливки"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.skydoves.colorpickerview.ColorPickerView
-            android:layout_gravity="center"
-            android:id="@+id/colorPickerFill"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            app:src="@drawable/palette"
-            app:selector="@drawable/wheel" />
+        <LinearLayout
+            android:weightSum="2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.skydoves.colorpickerview.ColorPickerView
+                android:layout_gravity="left"
+                android:id="@+id/colorPickerFill"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:src="@drawable/palette"
+                app:selector="@drawable/wheel" />
+            <View
+                android:id="@+id/colorFillRect"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_width="80dp"
+                android:background="@color/colorWhite"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </ScrollView>

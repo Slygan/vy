@@ -68,6 +68,7 @@ public class FigureLine extends Figure {
         incx = sign(dx);
         incy = sign(dy);
 
+
         if (dx < 0) dx = -dx;
         if (dy < 0) dy = -dy;
 
