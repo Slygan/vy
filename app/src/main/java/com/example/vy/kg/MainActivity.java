@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ratingdialog.setView(linearlayout);
 
                 SeekBar size = (SeekBar) linearlayout.findViewById(R.id.seekBar);
+                size.setProgress(Controller.pixelSize);
                 size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -109,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 final View colorLineRect = linearlayout.findViewById(R.id.colorLineRect);
                 final View colorFillRect = linearlayout.findViewById(R.id.colorFillRect);
-
                 colorPickerLine.setColorListener(new ColorPickerView.ColorListener() {
                     @Override
                     public void onColorSelected(int color) {
