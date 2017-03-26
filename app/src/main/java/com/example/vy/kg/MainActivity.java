@@ -186,6 +186,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawThread.pixels.addAll(drawer.getMozaik());
         } else if(id == R.id.nav_zatrav){
             controller.setZatravka();
+        } else if(id == R.id.nav_zatrav_polygon){
+            controller.setZatravkaPolygon();
         } if (id == R.id.nav_save){
             DrawThread.saveBMP();
             FileWriter fl = new FileWriter();

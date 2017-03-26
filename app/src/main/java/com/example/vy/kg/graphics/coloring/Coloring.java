@@ -8,11 +8,11 @@ import java.util.Stack;
 public class Coloring {
 
     final String LOG_TAG = "VY_LOGS";
+    ArrayList<MyPixelRect> pixels = new ArrayList<>();
 
 
     public ArrayList<MyPixelRect> paintOverZatrav(int x, int y, int colorFill, Bitmap bmp){
 
-        ArrayList<MyPixelRect> pixels = new ArrayList<>();
         Stack<MyPixelRect> stack = new Stack<>();
         stack.push(new MyPixelRect(1,x,y,colorFill));
         int width = bmp.getWidth();

@@ -2,7 +2,6 @@ package com.example.vy.kg.graphics;
 
 import android.content.Context;
 import android.graphics.Color;
-
 import com.example.vy.kg.Controller;
 import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
@@ -11,7 +10,7 @@ import com.example.vy.kg.graphics.figures.FigureLine;
 import com.example.vy.kg.graphics.figures.FigurePolygon;
 import com.example.vy.kg.graphics.figures.FigureRect;
 import com.example.vy.kg.graphics.figures.FigureRound;
-import com.example.vy.kg.graphics.pixels.MyPixel;
+import com.example.vy.kg.graphics.figures.Polygone;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 import java.util.ArrayList;
 import java.util.Random;
@@ -94,6 +93,13 @@ public class Drawer {
         polygon.buildPolygon();
 
         return polygon;
+    }
+
+    public Figure getFillPolygon(int [] points){
+        DrawThread.saveBMP();
+        Polygone fillPolygon = new Polygone();
+        fillPolygon.draw(DrawThread.b,points);
+        return fillPolygon;
     }
 
 }

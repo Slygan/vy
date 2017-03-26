@@ -19,6 +19,7 @@ public class Controller {
     public boolean IS_POLYGON = false;
 
     public boolean IS_ZATRAVKA = false;
+    public boolean IS_ZATRAVKA_POLYGON = false;
 
     private static Controller instance;
 
@@ -62,6 +63,11 @@ public class Controller {
         IS_ZATRAVKA = true;
     }
 
+    public void setZatravkaPolygon(){
+        clearTools();
+        IS_ZATRAVKA_POLYGON = true;
+    }
+
     public void clearTools(){
         IS_PEN = false;
         IS_LINE = false;
@@ -70,6 +76,7 @@ public class Controller {
         IS_BEZIER = false;
         IS_POLYGON = false;
         IS_ZATRAVKA = false;
+        IS_ZATRAVKA_POLYGON = false;
     }
 
 
