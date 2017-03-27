@@ -6,7 +6,9 @@ import com.example.vy.kg.Controller;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Polygone extends Figure {
+public class FigurePolygoneN extends Figure {
+
+    public static int nodesNum = 3;
 
     public CopyOnWriteArrayList<MyPixelRect> draw(Bitmap bmp, int[] points) {
         int color = Controller.colorLine;

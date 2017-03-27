@@ -72,15 +72,15 @@ public class DrawThread extends Thread{
                         }
 
                         for (Figure figure : motion) {
-                            paint.setColor(figure.getColor());
                             for (MyPixelRect pixel : figure.getFigure()) {
+                                paint.setColor(pixel.getColor());
                                 canvas.drawPoints(pixel.getPixel(), paint);
                             }
                         }
 
                         for (Figure figure : figures) {
-                            paint.setColor(figure.getColor());
                             for (MyPixelRect pixel : figure.getFigure()) {
+                                paint.setColor(pixel.getColor());
                                 canvas.drawPoints(pixel.getPixel(), paint);
                             }
                         }

@@ -23,7 +23,7 @@ public class XMLParser implements Parser {
             switch (masLine[0]){
                 case "rect":
                     figures.add(drawer.getRectangle(Integer.valueOf(masLine[1]),
-                            Integer.valueOf(masLine[3]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[4]),hex2decimal(masLine[5]),hex2decimal(masLine[6])));
+                            Integer.valueOf(masLine[3]),Integer.valueOf(masLine[2]),Integer.valueOf(masLine[4]),hex2decimal(masLine[5])));
                     break;
                 case "line":
                     figures.add(drawer.getLine(Integer.valueOf(masLine[1]),Integer.valueOf(masLine[2]),

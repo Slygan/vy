@@ -16,10 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.Toast;
-
 import com.example.vy.kg.file.FileReadBMP;
 import com.example.vy.kg.file.FileReader;
 import com.example.vy.kg.file.FileWriter;
@@ -186,8 +185,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawThread.pixels.addAll(drawer.getMozaik());
         } else if(id == R.id.nav_zatrav){
             controller.setZatravka();
+        } else if(id == R.id.nav_fill_rect){
+            controller.setFillRect();
         } else if(id == R.id.nav_zatrav_polygon){
-            controller.setZatravkaPolygon();
+            controller.setZatravkaPolygon(getLayoutInflater().inflate(R.layout.choose_nodes_num_alertdialog, null));
         } if (id == R.id.nav_save){
             DrawThread.saveBMP();
             FileWriter fl = new FileWriter();

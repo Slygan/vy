@@ -2,11 +2,11 @@ package com.example.vy.kg.graphics.figures;
 
 import com.example.vy.kg.graphics.Drawer;
 
-public class FigurePolygon extends Figure {
+public class FigurePolygon3 extends Figure {
 
     private int x1,x2,x3,y1,y2,y3;
 
-    public FigurePolygon(int x1, int x2, int x3, int y1, int y2, int y3){
+    public FigurePolygon3(int x1, int x2, int x3, int y1, int y2, int y3){
         this.x1 = x1;
         this.x2 = x2;
         this.x3 = x3;

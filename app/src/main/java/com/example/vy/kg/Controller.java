@@ -1,8 +1,14 @@
 package com.example.vy.kg;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vy.kg.graphics.Drawer;
+import com.example.vy.kg.graphics.figures.FigurePolygoneN;
 
 public class Controller {
     private Context context;
@@ -20,6 +26,7 @@ public class Controller {
 
     public boolean IS_ZATRAVKA = false;
     public boolean IS_ZATRAVKA_POLYGON = false;
+    public boolean IS_FILL_RECT = false;
 
     private static Controller instance;
 
@@ -63,9 +70,31 @@ public class Controller {
         IS_ZATRAVKA = true;
     }
 
-    public void setZatravkaPolygon(){
+    public void setZatravkaPolygon(final View linearLayout){
         clearTools();
+
+        final AlertDialog.Builder ratingdialog = new AlertDialog.Builder(context);
+        ratingdialog.setView(linearLayout);
+
+        ratingdialog.setPositiveButton("ОК",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText editText = (EditText) linearLayout.findViewById(R.id.chooseNodeNumber);
+                        FigurePolygoneN.nodesNum = Integer.valueOf(editText.getText().toString());
+                        Toast.makeText(context,editText.getText().toString(),Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+
+        ratingdialog.create();
+        ratingdialog.show();
+
         IS_ZATRAVKA_POLYGON = true;
+    }
+
+    public void setFillRect(){
+        clearTools();
+        IS_FILL_RECT = true;
     }
 
     public void clearTools(){
@@ -77,6 +106,7 @@ public class Controller {
         IS_POLYGON = false;
         IS_ZATRAVKA = false;
         IS_ZATRAVKA_POLYGON = false;
+        IS_FILL_RECT = false;
     }
 
 

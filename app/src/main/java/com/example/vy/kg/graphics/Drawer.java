@@ -7,10 +7,10 @@ import com.example.vy.kg.DrawThread;
 import com.example.vy.kg.graphics.figures.Figure;
 import com.example.vy.kg.graphics.figures.FigureCurve;
 import com.example.vy.kg.graphics.figures.FigureLine;
-import com.example.vy.kg.graphics.figures.FigurePolygon;
+import com.example.vy.kg.graphics.figures.FigurePolygon3;
 import com.example.vy.kg.graphics.figures.FigureRect;
 import com.example.vy.kg.graphics.figures.FigureRound;
-import com.example.vy.kg.graphics.figures.Polygone;
+import com.example.vy.kg.graphics.figures.FigurePolygoneN;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,11 +52,18 @@ public class Drawer {
         return round;
     }
 
-    public Figure getRectangle(int x1, int y1, int x2, int y2, int colorBorder, int colorFill) {
+    public Figure getRectangle(int x1, int y1, int x2, int y2, int colorBorder) {
+        FigureRect rect = new FigureRect(x1, x2, y1, y2);
+        rect.setColor(colorBorder);
+        rect.buildRect();
+        return rect;
+    }
+
+    public Figure getFillRectangle(int x1, int y1, int x2, int y2, int colorBorder, int colorFill){
         FigureRect rect = new FigureRect(x1, x2, y1, y2);
         rect.setColor(colorBorder);
         rect.setColorFill(colorFill);
-        rect.buildRect();
+        rect.buildFillRect();
         return rect;
     }
 
@@ -87,7 +94,7 @@ public class Drawer {
     }
 
     public Figure getPolygon(int x1, int x2, int x3, int y1, int y2, int y3, int colorBorder, int colorFill){
-        FigurePolygon polygon = new FigurePolygon(x1, x2, x3, y1, y2, y3);
+        FigurePolygon3 polygon = new FigurePolygon3(x1, x2, x3, y1, y2, y3);
         polygon.setColor(colorBorder);
         polygon.setColorFill(colorFill);
         polygon.buildPolygon();
@@ -97,7 +104,7 @@ public class Drawer {
 
     public Figure getFillPolygon(int [] points){
         DrawThread.saveBMP();
-        Polygone fillPolygon = new Polygone();
+        FigurePolygoneN fillPolygon = new FigurePolygoneN();
         fillPolygon.draw(DrawThread.b,points);
         return fillPolygon;
     }

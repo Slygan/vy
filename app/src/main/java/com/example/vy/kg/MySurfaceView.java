@@ -4,11 +4,10 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 import com.example.vy.kg.graphics.Drawer;
 import com.example.vy.kg.graphics.coloring.Coloring;
-import com.example.vy.kg.graphics.figures.Polygone;
+import com.example.vy.kg.graphics.figures.FigurePolygoneN;
 import com.example.vy.kg.graphics.pixels.MyPixelRect;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -113,10 +112,10 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                 y2 = (int)event.getY();
                 DrawThread.motion.clear();
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,Controller.colorLine,Controller.colorFill));
+                    DrawThread.figures.add(drawer.getRectangle(x1,y1,x2,y2,Controller.colorLine));
                     x1 = -1; x2 = -1;
                 }else{
-                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,Controller.colorLine,Controller.colorFill));
+                    DrawThread.motion.add(drawer.getRectangle(x1,y1,x2,y2,Controller.colorLine));
                 }
 
             }
@@ -180,18 +179,35 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
             if(event.getAction() == MotionEvent.ACTION_UP){
                 points.add((int)event.getX());
                 points.add((int)event.getY());
-                if(points.size() >= 12){
+                if(points.size() >= FigurePolygoneN.nodesNum*2){
                     int [] pts = new int [points.size()];
 
                     for(int i = 0; i < points.size(); i++){
                         pts[i] = points.get(i);
                     }
                     DrawThread.pixels.addAll(drawer.getFillPolygon(pts).getFigure());
+                    points.clear();
                 }
             }
         }
 
+        if(controller.IS_FILL_RECT){
+            if(x1 == -1){
+                x1 = (int)event.getX();
+                y1 = (int)event.getY();
+            }else{
+                x2 = (int)event.getX();
+                y2 = (int)event.getY();
+                DrawThread.motion.clear();
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    DrawThread.figures.add(drawer.getFillRectangle(x1,y1,x2,y2,Controller.colorLine,Controller.colorFill));
+                    x1 = -1; x2 = -1;
+                }else{
+                    DrawThread.motion.add(drawer.getFillRectangle(x1,y1,x2,y2,Controller.colorLine,Controller.colorFill));
+                }
 
+            }
+        }
 
         if(controller.IS_PEN){
             DrawThread.pixels.add(new MyPixelRect(Controller.pixelSize,(int)event.getX(),(int)event.getY(),Controller.colorLine));

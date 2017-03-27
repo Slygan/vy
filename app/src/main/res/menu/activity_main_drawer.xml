@@ -50,6 +50,10 @@
                     android:id="@+id/nav_zatrav_polygon"
                     android:icon="@mipmap/ic_format_color_fill_black_24dp"
                     android:title="@string/nav_zatrav_polygon"/>
+                <item
+                    android:id="@+id/nav_fill_rect"
+                    android:icon="@mipmap/ic_square_outline_black_24dp"
+                    android:title="@string/nav_fill_rect"/>
             </menu>
         </item>
 

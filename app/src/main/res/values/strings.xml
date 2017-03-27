@@ -23,5 +23,6 @@
     <string name="nav_save">Save</string>
     <string name="nav_open">Open</string>
     <string name="nav_mosaic">Mosaic</string>
-    <string name="nav_zatrav_polygon">Закраска полигона</string>
+    <string name="nav_zatrav_polygon">Закраска многоугольника</string>
+    <string name="nav_fill_rect">Построчная закраска прямоугольнкиа</string>
 </resources>
