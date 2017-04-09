@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:text="Размер кисти"
+            android:text="Размер пикселя"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

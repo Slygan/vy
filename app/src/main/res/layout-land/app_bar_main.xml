@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -24,14 +23,29 @@
 
     <LinearLayout
         android:padding="5dp"
-        android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/surface"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+
+        <fragment android:name="com.example.vy.trycanvas.fragments.FragmentMenuFAB"
+            tools:layout="@layout/change_pixel"
+            android:layout_weight="1"
+            android:id="@+id/headlines_fragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
-
     <android.support.design.widget.FloatingActionButton
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

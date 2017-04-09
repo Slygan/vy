@@ -8,7 +8,7 @@
 
     <string name="menu_clear">Очистить</string>
     <string name="nav_menu_instument">Инструменты</string>
-    <string name="nav_pen">Карадаш</string>
+    <string name="nav_pen">Кисть</string>
     <string name="nav_line">Линия</string>
     <string name="nav_rect">Прямоугольник</string>
     <string name="nav_polygon_3">Полигон(3)</string>
@@ -24,5 +24,5 @@
     <string name="nav_open">Open</string>
     <string name="nav_mosaic">Mosaic</string>
     <string name="nav_zatrav_polygon">Закраска многоугольника</string>
-    <string name="nav_fill_rect">Построчная закраска прямоугольнкиа</string>
+    <string name="nav_fill_rect">Построчная закраска прямоугольника</string>
 </resources>
