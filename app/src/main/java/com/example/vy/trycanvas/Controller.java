@@ -99,6 +99,7 @@ public class Controller {
         currentOperation = 8;
         operation.operationClear();
     }
+
     public void modelHeadOperation(){
         new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head)),
                 field.getBitmap().getWidth()/2,
