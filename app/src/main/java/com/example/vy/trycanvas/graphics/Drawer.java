@@ -4,12 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import com.example.vy.trycanvas.graphics.coloring.Coloring;
 import com.example.vy.trycanvas.graphics.figures.Figure;
+import com.example.vy.trycanvas.graphics.figures.FigureBSpline;
 import com.example.vy.trycanvas.graphics.figures.FigureCurve;
+import com.example.vy.trycanvas.graphics.figures.FigureErmit;
 import com.example.vy.trycanvas.graphics.figures.FigureLine;
 import com.example.vy.trycanvas.graphics.figures.FigurePolygon3;
 import com.example.vy.trycanvas.graphics.figures.FigurePolygoneN;
 import com.example.vy.trycanvas.graphics.figures.FigureRect;
 import com.example.vy.trycanvas.graphics.figures.FigureRound;
+import com.example.vy.trycanvas.graphics.figures.FiguresNURBS;
 import com.example.vy.trycanvas.graphics.pixels.MyPixel;
 import com.example.vy.trycanvas.graphics.pixels.MyPixelRect;
 import com.example.vy.trycanvas.graphics.pixels.Point;
@@ -39,6 +42,28 @@ public class Drawer {
                 new FigureRound(x,y,r)
                         .setColor(color))
                         .BrazAlgCircle(bitmap);
+    }
+
+    public static Figure getEllipse(int x1, int y1, int x2, int y2, int color, Bitmap bitmap){
+        int a,b,x,y;
+        if(x2 < x1){
+            int temp = x2;
+            x2 = x1;
+            x1 = temp;
+        }
+        if(y2 < y1){
+            int temp = y2;
+            y2 = y1;
+            y1 = temp;
+        }
+        x = x1+(x2-x1)/2;
+        y = y1+(y2-y1)/2;
+        a = x2 - x;
+        b = y2 - y;
+        return ((FigureRound)
+                new FigureRound(1,1,1)
+                        .setColor(color))
+                        .ellipse(x,y,a,b,color,bitmap);
     }
 
     public static Figure getRectangle(int x1, int y1, int x2, int y2, int color, Bitmap bitmap) {
@@ -84,12 +109,37 @@ public class Drawer {
                         .buildPolygon(bitmap);
     }
 
+    public static Figure getTriangle(int x1, int y1, int x2, int y2, int color, Bitmap bitmap){
+        return ((FigurePolygon3)
+                new FigurePolygon3(x1, x2, (x2-x1)/2+x1, y1, y1, y2)
+                        .setColor(color))
+                        .buildPolygon(bitmap);
+    }
+
     public static Figure getFillPolygonN(int [] points, Bitmap bitmap, int colorLine, int colorFill){
         return ((FigurePolygoneN)
                 new FigurePolygoneN()
                         .setColor(colorLine)
                         .setColorFill(colorFill))
                         .draw(points, bitmap) ;
+    }
+    public static Figure getErmit(int [] points, Bitmap bitmap, int colorLine){
+        return ((FigureErmit)
+                new FigureErmit()
+                        .setColor(colorLine))
+                        .draw(points, bitmap);
+    }
+    public static Figure getNURBS(int [] points, Bitmap bitmap, int colorLine){
+        return ((FiguresNURBS)
+                new FiguresNURBS(3)
+                        .setColor(colorLine))
+                        .draw(points, bitmap);
+    }
+    public static Figure getBSpline(int [] points, Bitmap bitmap, int colorLine){
+        return ((FigureBSpline)
+                new FigureBSpline(2)
+                        .setColor(colorLine))
+                        .draw(points, bitmap);
     }
 
     public static ArrayList<Point> fillFigureZatrav(int x, int y, int colorFill, Bitmap bitmap){

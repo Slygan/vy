@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.MotionEvent;
-
 import com.example.vy.trycanvas.file.FileReader;
 import com.example.vy.trycanvas.file.parser.OBJParser;
 import com.example.vy.trycanvas.graphics.Drawer;
@@ -29,6 +28,11 @@ public class Controller {
      * 6 - затравка замкнутой фигуры
      * 7 - закрашенный прямоугольник
      * 8 - закрашенный многоугольник
+     * 9 - эллипс
+     * 10 - треугольник
+     * 11 - треугольник затравочный1
+     * 12 - закрашенный эллипс
+     * 13 - эрмит
     * */
     private int currentOperation = -1;
     private Operation operation;
@@ -99,6 +103,44 @@ public class Controller {
         currentOperation = 8;
         operation.operationClear();
     }
+    public void setEllipseOperation(){
+        currentOperation = 9;
+        operation.operationClear();
+    }
+    public void setTriangle(){
+        currentOperation = 10;
+        operation.operationClear();
+    }
+    public void setTriangleFill(){
+        currentOperation = 11;
+        operation.operationClear();
+    }
+    public void setEllipseFill(){
+        currentOperation = 12;
+        operation.operationClear();
+    }
+    public void setErmit(){
+        currentOperation = 13;
+        operation.operationClear();
+    }
+    public void setNURBS(){
+        currentOperation = 14;
+        operation.operationClear();
+    }
+    public void setBspline(){
+        currentOperation = 15;
+        operation.operationClear();
+    }
+    public void setSave(){
+        currentOperation = 16;
+        operation.operationClear();
+    }
+    public void setOpen(){
+        currentOperation = 17;
+        operation.operationClear();
+    }
+
+
 
     public void modelHeadOperation(){
         new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head)),
@@ -139,6 +181,33 @@ public class Controller {
                 break;
             case 8:
                 operation.operationFillPolygonN(bitmap, bitmapMotion, event, colorLine, colorFill, field, nodesNum);
+                break;
+            case 9:
+                operation.operationEllipse(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 10:
+                operation.operationTriangle(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 11:
+                operation.operationTriangleFill(bitmap,bitmapMotion,event,colorLine,colorFill,field);
+                break;
+            case 12:
+                operation.operationEllipseFill(bitmap,bitmapMotion,event,colorLine,colorFill,field);
+                break;
+            case 13:
+                operation.operationErmit(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 14:
+                operation.operationNURBS(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 15:
+                operation.operationBSpline(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 16:
+                operation.operationSave(bitmap,bitmapMotion,event,colorLine,field);
+                break;
+            case 17:
+                operation.operationOpen(field);
                 break;
         }
     }

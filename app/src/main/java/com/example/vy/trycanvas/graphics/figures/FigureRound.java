@@ -52,6 +52,50 @@ public class FigureRound extends Figure {
         return this;
     }
 
+    //################ Алгорит Брезенхема для рисования эллипса #################
+    public Figure ellipse(int x, int y, int a, int b, int color, Bitmap bitmap){
+        int col,i,row,bnew;
+        long a_square,b_square,two_a_square,two_b_square,four_a_square,four_b_square,d;
+
+        b_square=b*b;
+        a_square=a*a;
+        row=b;
+        col=0;
+        two_a_square=a_square<<1;
+        four_a_square=a_square<<2;
+        four_b_square=b_square<<2;
+        two_b_square=b_square<<1;
+
+        d=two_a_square*((row-1)*(row))+a_square+two_b_square*(1-a_square);
+
+        while(a_square*(row)>b_square*(col)){
+            bitmap.setPixel(col+x,row+y,color);
+            bitmap.setPixel(col+x,y-row,color);
+            bitmap.setPixel(x-col,row+y,color);
+            bitmap.setPixel(x-col,y-row,color);
+            if (d>=0){
+                row--;
+                d-=four_a_square*(row);
+            }
+            d+=two_b_square*(3+(col<<1));
+            col++;
+        }
+        d=two_b_square*(col+1)*col+two_a_square*(row*(row-2)+1)+(1-two_a_square)*b_square;
+        while ((row) + 1!=0){
+            bitmap.setPixel(col+x,row+y,color);
+            bitmap.setPixel(col+x,y-row,color);
+            bitmap.setPixel(x-col,row+y,color);
+            bitmap.setPixel(x-col,y-row,color);
+            if (d<=0){
+                col++;
+                d+=four_b_square*col;
+            }
+            row--;
+            d+=two_a_square*(3-(row <<1));
+        }
+        return this;
+    }
+
     public Figure ParamAlgCircle(Bitmap bitmap){
         pixels.clear();
 

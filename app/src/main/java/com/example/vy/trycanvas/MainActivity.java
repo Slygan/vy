@@ -110,8 +110,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_model:
                 controller.modelHeadOperation();
                 break;
+            case R.id.nav_ellipse:
+                controller.setEllipseOperation();
+                break;
+            case R.id.nav_ellipse_fill:
+                controller.setEllipseFill();
+                break;
+            case R.id.nav_triangle:
+                controller.setTriangle();
+                break;
+            case R.id.nav_triangleFill:
+                controller.setTriangleFill();
+                break;
+            case R.id.nav_ermit:
+                controller.setErmit();
+                break;
+            case R.id.nav_NURBS:
+                controller.setNURBS();
+                break;
+            case R.id.nav_bspline:
+                controller.setBspline();
+                break;
+            case R.id.nav_save:
+                controller.setSave();
+                break;
+            case R.id.nav_open:
+                controller.setOpen();
+                break;
         }
-
         /*
          if (id == R.id.nav_save){
             DrawThread.saveBMP();
@@ -123,7 +149,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             DrawThread.c.drawBitmap(frb.readBMP24("test"),0,0,DrawThread.paint);
             DrawThread.flag = true;
         }*/
-
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

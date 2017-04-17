@@ -53,6 +53,10 @@ public class Field extends View {
     public Bitmap getBitmap() {
         return bitmap;
     }
+    public void setBitmap(Bitmap value) {
+        this.bitmap = value;
+    }
+
     public ArrayList<Figure> getFigures() {
         return figures;
     }
