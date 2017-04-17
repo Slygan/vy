@@ -3,10 +3,13 @@ package com.example.vy.trycanvas.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
+
 import com.example.vy.trycanvas.Controller;
 import com.example.vy.trycanvas.R;
 import com.skydoves.colorpickerview.ColorPickerView;
@@ -43,7 +46,7 @@ public class FragmentMenuFAB extends Fragment {
         colorPickerLine.setColorListener(new ColorPickerView.ColorListener() {
             @Override
             public void onColorSelected(int color) {
-                if(color!=-65539){
+                if(color!=-65539 && color!=-65538){
                     Controller.colorLine = color;
                     colorLineRect.setBackgroundColor(color);
                 }
@@ -52,7 +55,7 @@ public class FragmentMenuFAB extends Fragment {
         colorPickerFill.setColorListener(new ColorPickerView.ColorListener() {
             @Override
             public void onColorSelected(int color) {
-                if(color!=-65539) {
+                if(color!=-65539 && color!=-65538) {
                     Controller.colorFill = color;
                     colorFillRect.setBackgroundColor(color);
                 }

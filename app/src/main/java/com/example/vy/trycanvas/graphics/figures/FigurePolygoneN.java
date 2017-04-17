@@ -77,6 +77,62 @@ public class FigurePolygoneN extends Figure {
         return this;
     }
 
+    public Figure drawStaticColor(int[] points, Bitmap bitmap) {
+
+        Edge[] edges = new Edge[points.length / 2];
+        int k = 0;
+        int minY = points[1];
+        int maxY = minY;
+        for (int i = 0; i < points.length; i += 2) {
+            if (points[i + 1] < minY) {
+                minY = points[i + 1];
+            } else {
+                if (points[i + 1] > maxY) {
+                    maxY = points[i + 1];
+                }
+            }
+
+            int j = (i + 2) % points.length;
+            if (points[i + 1] > points[j + 1]) {
+                edges[k++] = new Edge(points[i], points[i + 1], points[j], points[j + 1]);
+            } else {
+                edges[k++] = new Edge(points[j], points[j + 1], points[i], points[i + 1]);
+            }
+        }
+
+        sort(edges);
+        int[] xs = new int[points.length];
+        int iXs = 0;
+        int start = 0, end = 0;
+        for (int i = maxY; i >= minY; i--) {
+            while (end < edges.length && edges[end].getStartY() >= i) {
+                end++;
+            }
+
+            iXs = 0;
+            for (int j = start; j < end; j++) {
+                if (edges[j].isNextY()) {
+                    xs[iXs++] = edges[j].getX();
+                    edges[j].nextY();
+                }
+            }
+            sort(xs, iXs);
+
+            for (int j = 0; j < iXs; j += 2) {
+                for (int h = xs[j]; h <= xs[j + 1]; h++) {
+                    //if (checkLimits(bmp, h, i)) {
+                    //TODO: замедляет работу
+                    //pixels.add(new Point(h, i));
+                    bitmap.setPixel(h, i, colorFill);
+                    //}
+                }
+            }
+
+        }
+        return this;
+    }
+
+
     private Edge[] sort(Edge[] points) {
         int ii, jj, ll;
         Edge minY, kk;

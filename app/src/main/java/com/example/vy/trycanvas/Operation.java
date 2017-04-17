@@ -129,8 +129,7 @@ public class Operation {
                 }
 
                 bitmapMotion.eraseColor(Color.WHITE);
-                Drawer.getBezierLine(parseArrayList(points), color, bitmapMotion);
-
+                field.getFigures().add(Drawer.getBezierLine(parseArrayList(points), color, bitmapMotion));
             } else { //анимация
                 motion = new ArrayList<>(points);
                 motion.add(points.size() - 1, new Point((int) event.getX(), (int) event.getY()));
@@ -140,6 +139,52 @@ public class Operation {
 
             }
         }
+    }
+
+    public void operationErmit(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (points.size() < 3) {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+            } else {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+                field.getFigures().add(Drawer.getErmit(parseArrayList(points).clone(), bitmap, color));
+                points.clear();
+            }
+        }
+    }
+
+    public void operationNURBS(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (points.size() < 3) {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+            } else {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+                field.getFigures().add(Drawer.getNURBS(parseArrayList(points).clone(), bitmap, color));
+                points.clear();
+            }
+        }
+    }
+
+    public void operationBSpline(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (points.size() < 3) {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+            } else {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+                field.getFigures().add(Drawer.getBSpline(parseArrayList(points).clone(), bitmap, color));
+                points.clear();
+            }
+        }
+    }
+
+    public void operationSave(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
+        FileWriter fl = new FileWriter();
+        fl.writeBMP24("test",bitmap);
+    }
+
+    public void operationOpen(Field field) {
+        FileReadBMP frb = new FileReadBMP();
+        field.setBitmap(frb.readBMP24("test"));
     }
 
     public void operationPolygon3(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, int colorFill, Field field) {
@@ -170,48 +215,6 @@ public class Operation {
                 }
             }
         }
-    }
-
-    public void operationErmit(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (points.size() < 3) {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-            } else {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-                field.getFigures().add(Drawer.getErmit(parseArrayList(points).clone(), bitmap, color));
-                points.clear();
-            }
-        }
-    }
-    public void operationNURBS(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (points.size() < 3) {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-            } else {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-                field.getFigures().add(Drawer.getNURBS(parseArrayList(points).clone(), bitmap, color));
-                points.clear();
-            }
-        }
-    }
-    public void operationBSpline(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (points.size() < 3) {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-            } else {
-                points.add(new Point((int) event.getX(), (int) event.getY()));
-                field.getFigures().add(Drawer.getBSpline(parseArrayList(points).clone(), bitmap, color));
-                points.clear();
-            }
-        }
-    }
-    public void operationSave(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
-        FileWriter fl = new FileWriter();
-        fl.writeBMP24("test",bitmap);
-    }
-    public void operationOpen(Field field) {
-        FileReadBMP frb = new FileReadBMP();
-        field.setBitmap(frb.readBMP24("test"));
     }
 
     public void operationTriangle(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, Field field) {
@@ -266,7 +269,7 @@ public class Operation {
         }
     }
 
-    public void operationFillPolygonN(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, int colorFill, Field field, int numNodes) {
+    public void operationFillPolygonNGrad(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, int colorFill, Field field, int numNodes) {
         if (points.size() == 0) {
             points.add(new Point((int) event.getX(), (int) event.getY()));
         } else {
@@ -278,7 +281,45 @@ public class Operation {
                     }
                 } else {
                     int[] pts = parseArrayList(points);
-                    field.getFigures().add(Drawer.getFillPolygonN(pts, bitmap, color, colorFill));
+                    field.getFigures().add(Drawer.getFillPolygonNGrad(pts, bitmap, color, colorFill));
+                    points.clear();
+                }
+
+            } else {
+                if (points.size() != numNodes - 1) {
+                    bitmapMotion.eraseColor(Color.WHITE);
+                    for (int i = 0; i < points.size() - 1; i++) {
+                        Drawer.getLine(points.get(i).getX(), points.get(i).getY(), points.get(i + 1).getX(), points.get(i + 1).getY(), color, bitmapMotion);
+                    }
+                    Drawer.getLine(points.get(points.size() - 1).getX(), points.get(points.size() - 1).getY(), (int) event.getX(), (int) event.getY(), color, bitmapMotion);
+                } else {
+                    bitmapMotion.eraseColor(Color.WHITE);
+                    for (int i = 0; i < points.size() - 1; i++) {
+                        Drawer.getLine(points.get(i).getX(), points.get(i).getY(), points.get(i + 1).getX(), points.get(i + 1).getY(), color, bitmapMotion);
+                    }
+                    Drawer.getLine(points.get(points.size() - 1).getX(), points.get(points.size() - 1).getY(), (int) event.getX(), (int) event.getY(), color, bitmapMotion);
+                    Drawer.getLine(points.get(0).getX(), points.get(0).getY(), (int) event.getX(), (int) event.getY(), color, bitmapMotion);
+                }
+
+
+            }
+
+        }
+    }
+
+    public void operationFillPolygonNStatic(Bitmap bitmap, Bitmap bitmapMotion, MotionEvent event, int color, int colorFill, Field field, int numNodes) {
+        if (points.size() == 0) {
+            points.add(new Point((int) event.getX(), (int) event.getY()));
+        } else {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                points.add(new Point((int) event.getX(), (int) event.getY()));
+                if (points.size() < numNodes) {
+                    for (int i = 0; i < points.size() - 1; i++) {
+                        Drawer.getLine(points.get(i).getX(), points.get(i).getY(), points.get(i + 1).getX(), points.get(i + 1).getY(), color, bitmap);
+                    }
+                } else {
+                    int[] pts = parseArrayList(points);
+                    field.getFigures().add(Drawer.getFillPolygonNStatic(pts, bitmap, color, colorFill));
                     points.clear();
                 }
 

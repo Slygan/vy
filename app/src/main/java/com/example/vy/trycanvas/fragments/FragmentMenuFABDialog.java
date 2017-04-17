@@ -50,7 +50,7 @@ public class FragmentMenuFABDialog extends DialogFragment {
         colorPickerLine.setColorListener(new ColorPickerView.ColorListener() {
             @Override
             public void onColorSelected(int color) {
-                if(color!=-65539){
+                if(color!=-65539 && color!=-65538){
                     Controller.colorLine = color;
                     colorLineRect.setBackgroundColor(color);
                 }
@@ -59,7 +59,7 @@ public class FragmentMenuFABDialog extends DialogFragment {
         colorPickerFill.setColorListener(new ColorPickerView.ColorListener() {
             @Override
             public void onColorSelected(int color) {
-                if(color!=-65539) {
+                if(color!=-65539 && color!=-65538) {
                     Controller.colorFill = color;
                     colorFillRect.setBackgroundColor(color);
                 }

@@ -116,13 +116,22 @@ public class Drawer {
                         .buildPolygon(bitmap);
     }
 
-    public static Figure getFillPolygonN(int [] points, Bitmap bitmap, int colorLine, int colorFill){
+    public static Figure getFillPolygonNGrad(int [] points, Bitmap bitmap, int colorLine, int colorFill) {
         return ((FigurePolygoneN)
                 new FigurePolygoneN()
                         .setColor(colorLine)
                         .setColorFill(colorFill))
-                        .draw(points, bitmap) ;
+                        .draw(points, bitmap);
     }
+
+    public static Figure getFillPolygonNStatic(int [] points, Bitmap bitmap, int colorLine, int colorFill){
+        return ((FigurePolygoneN)
+                new FigurePolygoneN()
+                        .setColor(colorLine)
+                        .setColorFill(colorFill))
+                        .drawStaticColor(points, bitmap) ;
+    }
+
     public static Figure getErmit(int [] points, Bitmap bitmap, int colorLine){
         return ((FigureErmit)
                 new FigureErmit()

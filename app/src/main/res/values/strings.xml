@@ -23,6 +23,16 @@
     <string name="nav_save">Save</string>
     <string name="nav_open">Open</string>
     <string name="nav_mosaic">Mosaic</string>
-    <string name="nav_zatrav_polygon">Закраска многоугольника</string>
+    <string name="nav_zatrav_polygon_grad">многоуг.(градиент)</string>
+    <string name="nav_zatrav_polygon_static">многоуг.(статич.)</string>
     <string name="nav_fill_rect">Построчная закраска прямоугольника</string>
+    <string name="nav_ellipse">Эллипс</string>
+    <string name="nav_triangle">Треугольник</string>
+    <string name="nav_triangleFill">Закрашенный треугольник</string>
+    <string name="nav_ellipse_fill">Закрашенный эллипс</string>
+    <string name="nav_ermit">Эрмит</string>
+    <string name="nav_NURBS">NURBSSpline</string>
+    <string name="nav_bspline">БСплайн</string>
+    <string name="nav_model_static">Person static</string>
+    <string name="nav_model_random">Person rand</string>
 </resources>

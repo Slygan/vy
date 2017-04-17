@@ -100,15 +100,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_fill_rect:
                 controller.setFillRectOperation();
                 break;
-            case R.id.nav_zatrav_polygon:
+            case R.id.nav_zatrav_polygon_grad:
                 new FragmentChooseNodeNumDialog().show(getSupportFragmentManager(),"custom");
-                controller.setFillPolygonNOperation();
+                controller.setFillPolygonNGradOperation();
+                break;
+            case R.id.nav_zatrav_polygon_static:
+                new FragmentChooseNodeNumDialog().show(getSupportFragmentManager(),"custom");
+                controller.setFillPolygonNStaticOperation();
                 break;
             case R.id.nav_bezier:
                 controller.setBezierOperation();
                 break;
             case R.id.nav_model:
                 controller.modelHeadOperation();
+                break;
+            case R.id.nav_model_static:
+                controller.modelHeadStaticOperation();
+                break;
+            case R.id.nav_model_random:
+                controller.modelHeadRandomOperation();
                 break;
             case R.id.nav_ellipse:
                 controller.setEllipseOperation();
@@ -138,17 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 controller.setOpen();
                 break;
         }
-        /*
-         if (id == R.id.nav_save){
-            DrawThread.saveBMP();
-            FileWriter fl = new FileWriter();
-            fl.writeBMP24("test",DrawThread.b);
-            DrawThread.c.drawColor(Color.WHITE);
-        } else if (id == R.id.nav_open){
-            FileReadBMP frb = new FileReadBMP();
-            DrawThread.c.drawBitmap(frb.readBMP24("test"),0,0,DrawThread.paint);
-            DrawThread.flag = true;
-        }*/
+
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

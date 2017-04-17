@@ -75,9 +75,13 @@
                     android:icon="@mipmap/ic_format_color_fill_black_24dp"
                     android:title="@string/nav_zatrav"/>
                 <item
-                    android:id="@+id/nav_zatrav_polygon"
+                    android:id="@+id/nav_zatrav_polygon_grad"
                     android:icon="@mipmap/ic_format_color_fill_black_24dp"
-                    android:title="@string/nav_zatrav_polygon"/>
+                    android:title="@string/nav_zatrav_polygon_grad"/>
+                <item
+                    android:id="@+id/nav_zatrav_polygon_static"
+                    android:icon="@mipmap/ic_format_color_fill_black_24dp"
+                    android:title="@string/nav_zatrav_polygon_static"/>
                 <item
                     android:id="@+id/nav_fill_rect"
                     android:icon="@mipmap/ic_square_outline_black_24dp"
@@ -92,6 +96,14 @@
                     android:id="@+id/nav_model"
                     android:icon="@mipmap/ic_face_black_24dp"
                     android:title="@string/nav_model" />
+                <item
+                    android:id="@+id/nav_model_static"
+                    android:icon="@mipmap/ic_face_black_24dp"
+                    android:title="@string/nav_model_static" />
+                <item
+                    android:id="@+id/nav_model_random"
+                    android:icon="@mipmap/ic_face_black_24dp"
+                    android:title="@string/nav_model_random" />
                 <item
                     android:id="@+id/nav_file"
                     android:icon="@mipmap/ic_file_black_24dp"

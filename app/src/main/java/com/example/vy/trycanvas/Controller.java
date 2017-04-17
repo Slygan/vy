@@ -27,12 +27,17 @@ public class Controller {
      * 5 - полигон 3
      * 6 - затравка замкнутой фигуры
      * 7 - закрашенный прямоугольник
-     * 8 - закрашенный многоугольник
+     * 8 - закрашенный многоугольник (градиент)
      * 9 - эллипс
      * 10 - треугольник
      * 11 - треугольник затравочный1
      * 12 - закрашенный эллипс
      * 13 - эрмит
+     *
+     *
+     *
+     *
+     * 18 - закрашенный многоугольник (статич.)
     * */
     private int currentOperation = -1;
     private Operation operation;
@@ -99,7 +104,7 @@ public class Controller {
         currentOperation = 7;
         operation.operationClear();
     }
-    public void setFillPolygonNOperation(){
+    public void setFillPolygonNGradOperation(){
         currentOperation = 8;
         operation.operationClear();
     }
@@ -139,11 +144,26 @@ public class Controller {
         currentOperation = 17;
         operation.operationClear();
     }
-
+    public void setFillPolygonNStaticOperation(){
+        currentOperation = 18;
+        operation.operationClear();
+    }
 
 
     public void modelHeadOperation(){
         new OBJParser().parse(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head)),
+                field.getBitmap().getWidth()/2,
+                field.getBitmap().getHeight()/2,
+                field.getBitmap());
+    }
+    public void modelHeadStaticOperation(){
+        new OBJParser().parseStaticFillStaticColor(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head)),
+                field.getBitmap().getWidth()/2,
+                field.getBitmap().getHeight()/2,
+                field.getBitmap(),colorFill);
+    }
+    public void modelHeadRandomOperation(){
+        new OBJParser().parseStaticFillRandomColor(FileReader.readFile(context.getResources().openRawResource(R.raw.african_head)),
                 field.getBitmap().getWidth()/2,
                 field.getBitmap().getHeight()/2,
                 field.getBitmap());
@@ -180,7 +200,7 @@ public class Controller {
                 operation.operationFillRect(bitmap, bitmapMotion, event, colorLine, colorFill, field);
                 break;
             case 8:
-                operation.operationFillPolygonN(bitmap, bitmapMotion, event, colorLine, colorFill, field, nodesNum);
+                operation.operationFillPolygonNGrad(bitmap, bitmapMotion, event, colorLine, colorFill, field, nodesNum);
                 break;
             case 9:
                 operation.operationEllipse(bitmap,bitmapMotion,event,colorLine,field);
@@ -208,6 +228,9 @@ public class Controller {
                 break;
             case 17:
                 operation.operationOpen(field);
+                break;
+            case 18:
+                operation.operationFillPolygonNStatic(bitmap,bitmapMotion,event,colorLine,colorFill,field,nodesNum);
                 break;
         }
     }
