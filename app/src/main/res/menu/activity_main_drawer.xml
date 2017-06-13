@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <item
-            android:id="@+id/nav_clear"
-            android:icon="@mipmap/ic_clear_black_24dp"
-            android:title="@string/nav_clear"/>
+    <item
+        android:id="@+id/nav_clear"
+        android:icon="@mipmap/ic_clear_black_24dp"
+        android:title="@string/nav_clear"/>
 
-        <item
-             android:id="@+id/nav_mosaic"
-             android:icon="@mipmap/ic_create_black_24dp"
-              android:title="@string/nav_mosaic"/>
+    <item
+        android:id="@+id/nav_mosaic"
+        android:icon="@mipmap/ic_create_black_24dp"
+        android:title="@string/nav_mosaic"/>
 
-        <item android:title="@string/nav_menu_instument">
+
+    <item
+        android:id="@+id/nav_fractal"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/nav_fractal">
+    </item>
+
+
+    <item
+        android:id="@+id/nav_trim"
+        android:icon="@mipmap/ic_square_outline_black_24dp"
+        android:title="@string/nav_trim">
+    </item>
+
+    <item
+        android:id="@+id/nav_projection"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/nav_projection">
+    </item>
+
+    <item
+        android:id="@+id/nav_test"
+        android:icon="@mipmap/ic_face_black_24dp"
+        android:title="@string/nav_test">
+    </item>
+
+
+
+    <item android:title="@string/nav_menu_instument">
             <menu>
                 <item
                     android:id="@+id/nav_pen"
@@ -26,17 +54,18 @@
                     android:icon="@mipmap/ic_square_outline_black_24dp"
                     android:title="@string/nav_rect" />
                 <item
-                    android:id="@+id/nav_polygon"
+                    android:id="@+id/nav_polygon3"
                     android:icon="@mipmap/ic_create_black_24dp"
                     android:title="@string/nav_polygon_3"/>
+                <item
+                    android:id="@+id/nav_polygon"
+                    android:icon="@mipmap/ic_create_black_24dp"
+                    android:title="@string/nav_polygon">
+                </item>
                 <item
                     android:id="@+id/nav_triangle"
                     android:icon="@mipmap/ic_create_black_24dp"
                     android:title="@string/nav_triangle"/>
-                <item
-                    android:id="@+id/nav_triangleFill"
-                    android:icon="@mipmap/ic_create_black_24dp"
-                    android:title="@string/nav_triangleFill"/>
                 <item
                     android:id="@+id/nav_round"
                     android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
@@ -46,25 +75,10 @@
                     android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
                     android:title="@string/nav_ellipse" />
                 <item
-                    android:id="@+id/nav_ellipse_fill"
-                    android:icon="@mipmap/ic_panorama_fish_eye_black_24dp"
-                    android:title="@string/nav_ellipse_fill"/>
-                <item
                     android:id="@+id/nav_bezier"
                     android:icon="@mipmap/ic_create_black_24dp"
                     android:title="@string/nav_curve"/>
-                <item
-                    android:id="@+id/nav_ermit"
-                    android:icon="@mipmap/ic_vector_line_black_24dp"
-                    android:title="@string/nav_ermit"/>
-                <item
-                    android:id="@+id/nav_NURBS"
-                    android:icon="@mipmap/ic_vector_line_black_24dp"
-                    android:title="@string/nav_NURBS"/>
-                <item
-                    android:id="@+id/nav_bspline"
-                    android:icon="@mipmap/ic_vector_line_black_24dp"
-                    android:title="@string/nav_bspline"/>
+
             </menu>
         </item>
 
@@ -89,8 +103,7 @@
             </menu>
         </item>
 
-
-        <item android:title="@string/nav_menu_file">
+    <item android:title="@string/nav_menu_file">
             <menu>
                 <item
                     android:id="@+id/nav_model"
@@ -104,10 +117,6 @@
                     android:id="@+id/nav_model_random"
                     android:icon="@mipmap/ic_face_black_24dp"
                     android:title="@string/nav_model_random" />
-                <item
-                    android:id="@+id/nav_file"
-                    android:icon="@mipmap/ic_file_black_24dp"
-                    android:title="@string/nav_file"/>
                 <item
                     android:id="@+id/nav_save"
                     android:icon="@mipmap/ic_file_black_24dp"

@@ -20,7 +20,7 @@ public class Field extends View {
     private ArrayList<Figure> figures;
     private Bitmap bitmap;
     private Bitmap bitmapMotion;
-    private int width, height;
+    public static int width, height;
     private Paint paint;
     private Controller controller;
 
@@ -31,6 +31,7 @@ public class Field extends View {
 
         bitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
         bitmapMotion = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
+
         paint = new Paint();
         figures = new ArrayList<>();
 
@@ -55,14 +56,16 @@ public class Field extends View {
     }
     public void setBitmap(Bitmap value) {
         this.bitmap = value;
+        invalidate();
+    }
+    public void createNewBitmap(){
+        bitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
     }
 
     public ArrayList<Figure> getFigures() {
         return figures;
     }
-    public void createNewBitmap(){
-        bitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
-    }
+
 
 
     @Override
@@ -72,6 +75,16 @@ public class Field extends View {
         canvas.drawBitmap(bitmapMotion,0,0,paint);
         canvas.drawBitmap(bitmap,0,0,paint);
         //canvas.restore();
+    }
+
+    @Override
+    public void setScaleY(float scaleY) {
+        super.setScaleY(scaleY);
+    }
+
+    @Override
+    public void setScaleX(float scaleX) {
+        super.setScaleX(scaleX);
     }
 
     @Override

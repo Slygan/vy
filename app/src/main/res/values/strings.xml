@@ -35,4 +35,52 @@
     <string name="nav_bspline">БСплайн</string>
     <string name="nav_model_static">Person static</string>
     <string name="nav_model_random">Person rand</string>
+    <string name="nav_menu_smothing">Сглаженные прямые</string>
+    <string name="nav_trans">Преоборазования</string>
+    <string name="nav_transfer">Перенос</string>
+    <string name="nav_select">Выделить</string>
+    <string name="nav_scaling">Масштабирование</string>
+    <string name="nav_trim">Отсечение</string>
+    <string name="nav_projection">Проекции</string>
+    <string name="nav_fractal">Фракталы</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="nav_polygon">Полигон (N)</string>
+    <string name="nav_test">ТЕСТ</string>
+
+
+    <string-array name="projectionList">
+        <item></item>
+        <item>Ортогональная проекция</item>
+        <item>Прямоугольная аксонометрическая проекция</item>
+        <item>Косоугольная аксонометрическая проекция</item>
+        <item>Центральная одноточечная проекция</item>
+    </string-array>
+
+    <string-array name="figureList">
+        <item></item>
+        <item>Негретянский мальчик</item>
+        <item>Додекаэдр</item>
+        <item>Цилиндр</item>
+        <item>График1</item>
+        <item>График2</item>
+    </string-array>
+
+    <string-array name="methodList">
+        <item></item>
+        <item>Z - буфер</item>
+        <item>Плавающий горизонт</item>
+    </string-array>
+
+    <string-array name="actionList">
+        <item></item>
+        <item>Перемещение</item>
+        <item>Приближение / Удаление</item>
+        <item>Отражение (Oxy)</item>
+        <item>Отражение (Oxz)</item>
+        <item>Отражение (Oyz)</item>
+        <item>Вражение (Ox)</item>
+        <item>Вражение (Oy)</item>
+        <item>Вражение (Oz)</item>
+    </string-array>
+
 </resources>

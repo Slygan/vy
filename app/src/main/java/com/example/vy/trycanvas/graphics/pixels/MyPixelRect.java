@@ -42,13 +42,13 @@ public class MyPixelRect extends MyPixel
         if(size%2==0){
             for(int i = -size/2; i < size/2; i++){
                 for(int j = - size/2; j < size/2; j++){
-                    bitmap.setPixel(x + i,y + j,color);
+                    setBitmapPixel(bitmap,x + i,y + j,color);
                 }
             }
         }else{
             for(int i = -size/2; i < size/2+1; i++){
                 for(int j = - size/2; j < size/2+1; j++){
-                    bitmap.setPixel(x + i,y + j,color);
+                    setBitmapPixel(bitmap,x + i,y + j,color);
                 }
             }
         }

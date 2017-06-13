@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/blue_background"
+    android:background="@color/colorBlack"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -36,10 +36,46 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_gravity="bottom|end"
+        app:fabSize="mini"
+        android:id="@+id/fabClear"
+        android:layout_marginBottom="160dp"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@mipmap/ic_clear_black_24dp"
+        app:backgroundTint="@color/colorWhite" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="bottom|end"
+        app:fabSize="mini"
+        android:id="@+id/fabSelect"
+        android:layout_marginBottom="115dp"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@mipmap/ic_auto_fix_black_24dp"
+        app:backgroundTint="@color/colorWhite" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="bottom|end"
+        app:fabSize="mini"
+        android:id="@+id/fabZoom"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@mipmap/ic_zoom_in_black_24dp"
+        app:backgroundTint="@color/colorWhite" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="bottom|end"
         app:fabSize="normal"
         android:id="@+id/fab"
         android:layout_margin="10dp"
-        app:srcCompat="@mipmap/ic_create_black_24dp"
-        app:backgroundTint="@color/blue_background" />
+        app:srcCompat="@mipmap/ic_brush_black_24dp"
+        app:backgroundTint="@color/colorWhite" />
 
 </android.support.design.widget.CoordinatorLayout>

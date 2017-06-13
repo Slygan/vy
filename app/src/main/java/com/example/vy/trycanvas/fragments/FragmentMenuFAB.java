@@ -25,6 +25,9 @@ public class FragmentMenuFAB extends Fragment {
         size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress==0){
+                    progress++;
+                }
                 Controller.pixelSize = progress;
             }
             @Override

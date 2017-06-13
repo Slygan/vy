@@ -57,10 +57,9 @@
             <View
                 android:id="@+id/colorLineRect"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:background="@color/colorWhite"
-                android:layout_height="80dp"/>
+                android:layout_height="0dp"/>
 
         </LinearLayout>
 
@@ -91,10 +90,9 @@
             <View
                 android:id="@+id/colorFillRect"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:background="@color/colorWhite"
-                android:layout_height="80dp"/>
+                android:layout_height="0dp"/>
         </LinearLayout>
 
 

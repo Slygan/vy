@@ -4,18 +4,19 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import com.example.vy.trycanvas.graphics.coloring.Coloring;
 import com.example.vy.trycanvas.graphics.figures.Figure;
-import com.example.vy.trycanvas.graphics.figures.FigureBSpline;
-import com.example.vy.trycanvas.graphics.figures.FigureCurve;
-import com.example.vy.trycanvas.graphics.figures.FigureErmit;
-import com.example.vy.trycanvas.graphics.figures.FigureLine;
-import com.example.vy.trycanvas.graphics.figures.FigurePolygon3;
-import com.example.vy.trycanvas.graphics.figures.FigurePolygoneN;
-import com.example.vy.trycanvas.graphics.figures.FigureRect;
-import com.example.vy.trycanvas.graphics.figures.FigureRound;
-import com.example.vy.trycanvas.graphics.figures.FiguresNURBS;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigureCurve;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigureLine;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigurePolygon3;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigurePolygoneN;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigureRect;
+import com.example.vy.trycanvas.graphics.figures.figureimpl.FigureRound;
 import com.example.vy.trycanvas.graphics.pixels.MyPixel;
 import com.example.vy.trycanvas.graphics.pixels.MyPixelRect;
-import com.example.vy.trycanvas.graphics.pixels.Point;
+import com.example.vy.trycanvas.graphics.pixels.Point2D;
+import com.example.vy.trycanvas.graphics.smoothing.FigureLineArea;
+import com.example.vy.trycanvas.graphics.smoothing.FigureLineSelect;
+import com.example.vy.trycanvas.graphics.smoothing.FigureLineVy;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,11 +38,36 @@ public class Drawer {
                         .buildBresenLine(bitmap);
     }
 
+    public static void getLightLine(int x1, int y1, int x2, int y2, int color, Bitmap bitmap) {
+        ((FigureLine) new FigureLine(x1,y1,x2,y2).setColor(color)).buildParamLineLight(bitmap);
+    }
+
+    public static Figure getLineArea(int x1, int y1, int x2, int y2, int color, Bitmap bitmap) {
+        return ((FigureLineArea)
+                new FigureLineArea()
+                        .setColor(color))
+                        .draw(bitmap, new int[]{x1,y1,x2,y2});
+    }
+
+    public static Figure getLineSelect(int x1, int y1, int x2, int y2, int color, Bitmap bitmap) {
+        return ((FigureLineSelect)
+                new FigureLineSelect()
+                        .setColor(color))
+                .draw(bitmap, new int[]{x1,y1,x2,y2});
+    }
+
+    public static Figure getLineVy(int x1, int y1, int x2, int y2, int color, Bitmap bitmap) {
+        return ((FigureLineVy)
+                new FigureLineVy()
+                        .setColor(color))
+                .draw(bitmap, new int[]{x1,y1,x2,y2});
+    }
+
     public static Figure getRound(int x, int y, int r, int color, Bitmap bitmap) {
         return ((FigureRound)
                 new FigureRound(x,y,r)
                         .setColor(color))
-                        .BrazAlgCircle(bitmap);
+                        .ParamAlgCircle(bitmap);
     }
 
     public static Figure getEllipse(int x1, int y1, int x2, int y2, int color, Bitmap bitmap){
@@ -132,6 +158,14 @@ public class Drawer {
                         .drawStaticColor(points, bitmap) ;
     }
 
+    public static ArrayList<Point2D> fillFigureZatrav(int x, int y, int colorFill, Bitmap bitmap){
+        //return new Coloring().paintOverZatrav(x,y,colorFill,bitmap);
+        new Coloring().draw(bitmap,new Point2D(x,y),colorFill);
+        return null;
+    }
+
+    /*
+    *
     public static Figure getErmit(int [] points, Bitmap bitmap, int colorLine){
         return ((FigureErmit)
                 new FigureErmit()
@@ -150,9 +184,6 @@ public class Drawer {
                         .setColor(colorLine))
                         .draw(points, bitmap);
     }
-
-    public static ArrayList<Point> fillFigureZatrav(int x, int y, int colorFill, Bitmap bitmap){
-        return new Coloring().paintOverZatrav(x,y,colorFill,bitmap);
-    }
+    * */
 
 }

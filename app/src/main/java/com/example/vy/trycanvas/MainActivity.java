@@ -10,15 +10,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import com.example.vy.trycanvas.fragments.FragmentChooseNodeNumDialog;
+
+import com.example.vy.trycanvas.Draw3D.Draw3DManager;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentChooseFractalDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentChooseLineTypeDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentChooseNodeNumDialog;
 import com.example.vy.trycanvas.fragments.FragmentField;
-import com.example.vy.trycanvas.fragments.FragmentMenuFABDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentChooseTrimDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentMenuFABDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentMenuProjectionsPropertiesDialog;
+import com.example.vy.trycanvas.fragments.dialogs.FragmentMenuZoomDialog;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static Context context;
+    private Draw3DManager draw3DManager;
     private Controller controller;
     final String LOG_TAG = "VY_LOGS";
 
@@ -29,14 +38,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Log.d(LOG_TAG,"START");
 
+        /*
+        * Create controller(pull him appContext)
+        * */
         context = this;
-        controller = new Controller(context);
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.surface, new FragmentField()).commit();
+        draw3DManager = new Draw3DManager();
+        controller = new Controller(context, getSupportFragmentManager(),draw3DManager);
 
 
+        /*
+        * Toolbar settings
+        * */
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        /*
+        * Start fragment field
+        * */
+        getSupportFragmentManager().beginTransaction().add(R.id.surface, new FragmentField()).commit();
+
+
+        /*
+        * Fabs listeners
+        * */
+        FloatingActionButton fabClear = (FloatingActionButton) findViewById(R.id.fabClear);
+        fabClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controller.clear();
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fabSelect = (FloatingActionButton) findViewById(R.id.fabSelect);
+        fabSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controller.setSelectOperation();
+            }
+        });
+        FloatingActionButton fabZoom = (FloatingActionButton) findViewById(R.id.fabZoom);
+        fabZoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentMenuZoomDialog fragmentMenuZoomDialog = new FragmentMenuZoomDialog();
+                fragmentMenuZoomDialog.setController(controller);
+                fragmentMenuZoomDialog.show(getSupportFragmentManager(),"custom");
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,9 +93,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
+        /*
+        * NavifationDrawer settings
+        * */
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -55,9 +105,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
 
@@ -80,7 +143,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 controller.setMozaikOperation();
                 break;
             case R.id.nav_line:
-                controller.setLineOperation();
+                FragmentChooseLineTypeDialog fragmentChooseLineTypeDialog = new FragmentChooseLineTypeDialog();
+                fragmentChooseLineTypeDialog.setController(controller);
+                fragmentChooseLineTypeDialog.show(getSupportFragmentManager(),"custom");
                 break;
             case R.id.nav_round:
                 controller.setRoundOperation();
@@ -88,8 +153,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_rect:
                 controller.setRectangleOperation();
                 break;
-            case R.id.nav_polygon:
+            case R.id.nav_polygon3:
                 controller.setPolygon3Operation();
+                break;
+            case R.id.nav_polygon:
+                new FragmentChooseNodeNumDialog().show(getSupportFragmentManager(),"custom");
+                controller.setPolygonNOperation();
                 break;
             case R.id.nav_zatrav:
                 controller.setZatravOperation();
@@ -111,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_bezier:
                 controller.setBezierOperation();
                 break;
+
             case R.id.nav_model:
                 controller.modelHeadOperation();
                 break;
@@ -120,33 +190,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_model_random:
                 controller.modelHeadRandomOperation();
                 break;
+
             case R.id.nav_ellipse:
                 controller.setEllipseOperation();
-                break;
-            case R.id.nav_ellipse_fill:
-                controller.setEllipseFill();
                 break;
             case R.id.nav_triangle:
                 controller.setTriangle();
                 break;
-            case R.id.nav_triangleFill:
-                controller.setTriangleFill();
-                break;
-            case R.id.nav_ermit:
-                controller.setErmit();
-                break;
-            case R.id.nav_NURBS:
-                controller.setNURBS();
-                break;
-            case R.id.nav_bspline:
-                controller.setBspline();
-                break;
+
             case R.id.nav_save:
                 controller.setSave();
                 break;
             case R.id.nav_open:
                 controller.setOpen();
                 break;
+
+            case R.id.nav_trim:
+                FragmentChooseTrimDialog fragmentChooseTrimDialog = new FragmentChooseTrimDialog();
+                fragmentChooseTrimDialog.setController(controller);
+                fragmentChooseTrimDialog.setFragmentManager(getSupportFragmentManager());
+                fragmentChooseTrimDialog.show(getSupportFragmentManager(),"custom");
+                break;
+
+
+            case R.id.nav_projection:
+                FragmentMenuProjectionsPropertiesDialog fragmentMenuProjectionsPropertiesDialog = new FragmentMenuProjectionsPropertiesDialog();
+                fragmentMenuProjectionsPropertiesDialog.setController(controller);
+                fragmentMenuProjectionsPropertiesDialog.setContext(context);
+                fragmentMenuProjectionsPropertiesDialog.setDraw3DManager(draw3DManager);
+                controller.setProjectionOperation();
+                fragmentMenuProjectionsPropertiesDialog.show(getSupportFragmentManager(),"custom");
+                break;
+
+
+            case R.id.nav_fractal:
+                FragmentChooseFractalDialog fragmentChooseFractalDialog = new FragmentChooseFractalDialog();
+                fragmentChooseFractalDialog.setController(controller);
+                fragmentChooseFractalDialog.show(getSupportFragmentManager(),"custom");
+                break;
+
+
+
+            case R.id.nav_test:
+                controller.setTESTOperation();
+                break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
